@@ -1,0 +1,18 @@
+\contentsline {section}{\numberline {1}Abstract}{1}
+\contentsline {section}{\numberline {2}Introduction}{1}
+\contentsline {section}{\numberline {3}Inject flow problem and SPH implementation}{2}
+\contentsline {section}{\numberline {4}Physical Model and Numerical Method}{3}
+\contentsline {subsection}{\numberline {4.1}Governing equations\citep {suzuki2005numerical}}{3}
+\contentsline {subsection}{\numberline {4.2}Boundary conditions}{4}
+\contentsline {subsubsection}{\numberline {4.2.1}Eruption vent}{4}
+\contentsline {subsubsection}{\numberline {4.2.2}Non-slip wall boundary}{4}
+\contentsline {subsubsection}{\numberline {4.2.3}Open outlet pressure boundary condition}{4}
+\contentsline {subsection}{\numberline {4.3}Discretized governing equations with SPH}{4}
+\contentsline {subsection}{\numberline {4.4}Turbulence modelling with SPH}{5}
+\contentsline {subsubsection}{\numberline {4.4.1}$SPH-\varepsilon $ turbulence model}{5}
+\contentsline {subsubsection}{\numberline {4.4.2}Turbulence heat transfer}{7}
+\contentsline {subsubsection}{\numberline {4.4.3}Discretized governing Equation with $SPH-\varepsilon $ turbulence model}{8}
+\contentsline {section}{\numberline {5}Data structure and load balance}{9}
+\contentsline {section}{\numberline {6}Adaptive domain}{9}
+\contentsline {section}{\numberline {7}Numerical test}{9}
+\contentsline {subsection}{\numberline {7.1}Basic feature of current simulation}{9}
