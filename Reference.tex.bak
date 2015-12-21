@@ -629,7 +629,7 @@
 }
 @article{monaghan2005smoothed,
   title={Smoothed particle hydrodynamics},
-  author={Monaghan, Joe J},
+  author={Monaghan, JJ},
   journal={Reports on progress in physics},
   volume={68},
   number={8},
@@ -778,6 +778,16 @@
   pages={99--112},
   year={2011},
   organization={Wiley Online Library}
+}
+@article{cherfils2012josephine,
+  title={JOSEPHINE: A parallel SPH code for free-surface flows},
+  author={Cherfils, JM and Pinon, G and Rivoalen, Elie},
+  journal={Computer Physics Communications},
+  volume={183},
+  number={7},
+  pages={1468--1480},
+  year={2012},
+  publisher={Elsevier}
 }
 @article{herault2010sph,
   title={Sph on gpu with cuda},
@@ -1006,7 +1016,7 @@
 
 @article{monaghan2011turbulence,
   title={A turbulence model for Smoothed Particle Hydrodynamics},
-  author={Monaghan, JJ},
+  author={Monaghan, Joe J},
   journal={European Journal of Mechanics-B/Fluids},
   volume={30},
   number={4},
@@ -1041,12 +1051,12 @@
   publisher={Oxford University Press}
 }
 
-%@book{gatski2013compressibility,
-%  title={Compressibility, turbulence and high speed flow},
-%  author={Gatski, Thomas B and Bonnet, Jean-Paul},
-%  year={2013},
-%  publisher={Academic Press}
-%}
+@book{gatski2013compressibility,
+  title={Compressibility, turbulence and high speed flow},
+  author={Gatski, Thomas B and Bonnet, Jean-Paul},
+  year={2013},
+  publisher={Academic Press}
+}
 
 @misc {NASACompressibleTurbulence,
 	title = {Implementing Turbulence Models into the Compressible RANS Equations},
@@ -1121,6 +1131,16 @@
   author={Dom{\'\i}nguez, Jose M and Crespo, Alejandro JC and G{\'o}mez-Gesteira, Moncho},
   journal={arXiv preprint arXiv:1110.3711},
   year={2011}
+}
+
+@article{marrone2012study,
+  title={Study of ship wave breaking patterns using 3D parallel SPH simulations},
+  author={Marrone, S and Bouscasse, B and Colagrossi, A and Antuono, M},
+  journal={Computers \& Fluids},
+  volume={69},
+  pages={54--66},
+  year={2012},
+  publisher={Elsevier}
 }
 
 @article{ferrari2009new,
