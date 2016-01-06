@@ -1,6 +1,6 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  6 JAN 2016 15:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  6 JAN 2016 18:37
 entering extended mode
- \write18 enabled.
+ restricted \write18 enabled.
  %&-line parsing enabled.
 **"Paper for submission.tex"
 (./Paper for submission.tex
@@ -341,58 +341,123 @@ File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 398.
- [1{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
-
-
-]
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ¦ in font ptmr7t!
 
-Underfull \hbox (badness 10000) in paragraph at lines 454--459
+Underfull \hbox (badness 6412) in paragraph at lines 431--459
+[]\OT1/ptm/m/n/10 SPH (spher-i-cal par-ti-cle hy-dro-dy-nam-ics) is a
+ []
+
+
+Underfull \hbox (badness 4024) in paragraph at lines 431--459
+\OT1/ptm/m/n/10 that en-ables dis-tributed nu-mer-i-cal com-put-ing in
+ []
+
+
+Underfull \hbox (badness 4726) in paragraph at lines 431--459
+\OT1/ptm/m/n/10 [6] pre-sented op-ti-miza-tions for both CPU and
+ []
+
+
+Underfull \hbox (badness 2005) in paragraph at lines 431--459
+\OT1/ptm/m/n/10 par-al-lelized a 3D SPH code us-ing the mes-sage
+ []
+
+
+Underfull \hbox (badness 2205) in paragraph at lines 431--459
+\OT1/ptm/m/n/10 dy-namic load bal-anc-ing strat-egy to im-prove the
+ []
+
+
+Underfull \hbox (badness 1448) in paragraph at lines 431--459
+\OT1/ptm/m/n/10 al. [8] im-ple-mented a par-al-lel Go-dunov SPH in
+ []
+
+
+Underfull \hbox (badness 4569) in paragraph at lines 431--459
+\OT1/ptm/m/n/10 However, most im-ple-men-ta-tion of par-al-lel SPH
+ []
+
+
+Underfull \hbox (badness 2781) in paragraph at lines 431--459
+\OT1/ptm/m/n/10 (such as re-al-is-tic wind field, erup-tion bound-ary
+ []
+
+
+Underfull \hbox (badness 2065) in paragraph at lines 431--459
+\OT1/ptm/m/n/10 and cu-bics for three di-men-sion, as buck-ets. As
+ []
+
+
+Underfull \hbox (badness 3250) in paragraph at lines 431--459
+\OT1/ptm/m/n/10 for the ac-tual stor-age of data rep-re-sent-ing the
+ []
+
+
+Underfull \hbox (badness 7740) in paragraph at lines 431--459
+\OT1/ptm/m/n/10 phys-i-cal quan-ti-ties as-so-ci-ated to each par-ti-cle,
+ []
+
+
+Underfull \hbox (badness 1400) in paragraph at lines 431--459
+\OT1/ptm/m/n/10 par-ti-cle (po-si-tion, ve-loc-ity, den-sity) are stored in
+ []
+
+
+Underfull \hbox (badness 2158) in paragraph at lines 431--459
+\OT1/ptm/m/n/10 pro-gram-ming and com-pu-ta-tion. So we adopt an
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 431--459
 \OT1/ptm/m/n/10 To the best of the au-thor's knowl-edge, no
  []
 
 
-Underfull \hbox (badness 3568) in paragraph at lines 454--459
+Underfull \hbox (badness 3568) in paragraph at lines 431--459
 \OT1/ptm/m/n/10 For JPUE sim-u-la-tion, such fea-ture will greatly
  []
 
 
-Underfull \hbox (badness 2134) in paragraph at lines 454--459
+Underfull \hbox (badness 2134) in paragraph at lines 431--459
 \OT1/ptm/m/n/10 The data struc-ture, par-ti-cle and bucket in-dex-ing
  []
 
 
-Underfull \hbox (badness 2088) in paragraph at lines 454--459
+Underfull \hbox (badness 2088) in paragraph at lines 431--459
 \OT1/ptm/m/n/10 strate-gies, do-main de-com-po-si-tion , dy-namic load
  []
 
 
-Underfull \hbox (badness 3701) in paragraph at lines 454--459
+Underfull \hbox (badness 3701) in paragraph at lines 431--459
 \OT1/ptm/m/n/10 in this pa-per can be eas-ily adopted by other
  []
 
 
-Underfull \hbox (badness 1478) in paragraph at lines 454--459
+Underfull \hbox (badness 1478) in paragraph at lines 431--459
 \OT1/ptm/m/n/10 im-ple-men-ta-tions of any mesh-free meth-ods(include
  []
 
 
-Underfull \hbox (badness 3189) in paragraph at lines 454--459
+Underfull \hbox (badness 3189) in paragraph at lines 431--459
 \OT1/ptm/m/n/10 SPH). The flex-i-bil-ity of data ac-cess-ing en-ables
  []
 
 
-Underfull \hbox (badness 3229) in paragraph at lines 454--459
+Underfull \hbox (badness 3229) in paragraph at lines 431--459
 \OT1/ptm/m/n/10 more com-pli-cated prob-lems and us-ing of more
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 454--459
+Underfull \hbox (badness 10000) in paragraph at lines 431--459
 
  []
 
+[1{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+
+
+]
 <Work_flow.jpg, id=9, 721.69624pt x 910.40125pt>
 File: Work_flow.jpg Graphic file (type jpg)
  <use Work_flow.jpg>
@@ -471,47 +536,47 @@ File: Involved_domain_adjusting.jpg Graphic file (type jpg)
 Package pdftex.def Info: Involved_domain_adjusting.jpg used on input line 613.
 (pdftex.def)             Requested size: 231.26872pt x 173.45154pt.
 
-Underfull \hbox (badness 7238) in paragraph at lines 595--624
+Underfull \hbox (badness 7238) in paragraph at lines 595--625
 []\OT1/ptm/m/n/10 As a La-grangian method, SPH is able to
  []
 
 
-Underfull \hbox (badness 1881) in paragraph at lines 595--624
+Underfull \hbox (badness 1881) in paragraph at lines 595--625
 \OT1/ptm/m/n/10 au-to-mat-i-cally de-fine and ad-just its com-pu-ta-tional
  []
 
 
-Underfull \hbox (badness 3623) in paragraph at lines 595--624
+Underfull \hbox (badness 3623) in paragraph at lines 595--625
 \OT1/ptm/m/n/10 of the SPH par-ti-cles de-fines the com-pu-ta-tional
  []
 
 
-Underfull \hbox (badness 3323) in paragraph at lines 595--624
+Underfull \hbox (badness 3323) in paragraph at lines 595--625
 \OT1/ptm/m/n/10 with these sta-tion-ary par-ti-cles. If sim-u-lat-ing of
  []
 
 
-Underfull \hbox (badness 1755) in paragraph at lines 595--624
+Underfull \hbox (badness 1755) in paragraph at lines 595--625
 \OT1/ptm/m/n/10 groups based on the value of the involved-flag:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 595--624
+Underfull \hbox (badness 10000) in paragraph at lines 595--625
 \OT1/ptm/m/n/10 in-volved (involved-flag=2), po-ten-tially in-volved
  []
 
 
-Underfull \hbox (badness 4779) in paragraph at lines 595--624
+Underfull \hbox (badness 4779) in paragraph at lines 595--625
 \OT1/ptm/m/n/10 com-mu-ni-ca-tion and com-pu-ta-tion as-so-ci-ated with
  []
 
 
-Underfull \hbox (badness 2221) in paragraph at lines 595--624
+Underfull \hbox (badness 2221) in paragraph at lines 595--625
 \OT1/ptm/m/n/10 un-in-volved par-ti-cles can be ig-nored. That is to
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 595--624
+Underfull \hbox (badness 10000) in paragraph at lines 595--625
 
  []
 
@@ -552,13 +617,13 @@ Overfull \hbox (28.42697pt too wide) in paragraph at lines 746--747
  [][] 
  []
 
-<weak_loglog.jpg, id=48, 817.0525pt x 421.575pt>
+<weak_loglog.jpg, id=48, 679.53876pt x 421.575pt>
 File: weak_loglog.jpg Graphic file (type jpg)
  <use weak_loglog.jpg>
 Package pdftex.def Info: weak_loglog.jpg used on input line 753.
-(pdftex.def)             Requested size: 269.62816pt x 139.12018pt.
+(pdftex.def)             Requested size: 237.84213pt x 147.55345pt.
 
-Overfull \hbox (48.30128pt too wide) in paragraph at lines 753--754
+Overfull \hbox (16.51526pt too wide) in paragraph at lines 753--754
  [][] 
  []
 
@@ -570,27 +635,8 @@ Overfull \vbox (13.997pt too high) has occurred while \output is active []
 
 
 [8 <./Involved_initial.jpg> <./Involved_domain_adjusting.jpg> <./2cases_time.jp
-g> <./2cases_efficiency.jpg> <./2D_vs_3D_efficiency.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 762--765
-[]\OT1/ptm/m/n/10 The ini-tial do-main is $\OT1/cmr/m/n/10 [\OMS/cmsy/m/n/10 ^^
-@\OT1/cmr/m/n/10 4800\OML/cmm/m/it/10 m; \OT1/cmr/m/n/10 4800\OML/cmm/m/it/10 m
-\OT1/cmr/m/n/10 ] \OMS/cmsy/m/n/10 ^^B
- []
-
-
-Underfull \hbox (badness 1371) in paragraph at lines 762--765
-\OT1/ptm/m/n/10 to smooth-ing length) equals to 200m and 100m
- []
-
-
-Underfull \hbox (badness 2005) in paragraph at lines 762--765
-\OT1/ptm/m/n/10 can be in-creased by in-creas-ing to-tal amount of
- []
-
-
-Underfull \vbox (badness 3168) has occurred while \output is active []
-
- [9 <./weak_loglog.jpg>] (./Paper for submission.bbl
+g> <./2cases_efficiency.jpg> <./2D_vs_3D_efficiency.jpg>] [9 <./weak_loglog.jpg
+>] (./Paper for submission.bbl
 Underfull \hbox (badness 1596) in paragraph at lines 67--72
 \OT1/ptm/m/n/9 Gesteira, S. Long-shaw, R. Canelas, R. Va-con-dio,
  []
@@ -622,11 +668,11 @@ Before submitting the final camera ready copy, remember to:
 Here is how much of TeX's memory you used:
  4111 strings out of 493117
  64413 string characters out of 6135433
- 136986 words of memory out of 5000000
+ 139986 words of memory out of 5000000
  7497 multiletter control sequences out of 15000+600000
  48147 words of font info for 87 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 38i,19n,47p,1836b,360s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,19n,47p,1839b,360s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/en
 c/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfo
@@ -642,7 +688,7 @@ r/local/texlive/2014/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local
 /texlive/2014/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2
 014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2014/texmf-
 dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on "Paper for submission.pdf" (10 pages, 941547 bytes).
+Output written on "Paper for submission.pdf" (10 pages, 939454 bytes).
 PDF statistics:
  105 PDF objects out of 1000 (max. 8388607)
  67 compressed objects within 1 object stream
