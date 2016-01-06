@@ -37,7 +37,7 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Particle and bucket}{4}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}Hash table and hash confliction}{4}}
 \citation{kumar2013parallel}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Ununiform distribution of particles in the $[0,1]^n \times \textbf  {T}$ space due to adding of new particles at a small portition of the domain, pointer to these new particles will be stored in external link list.}}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Non-uniform distribution of particles in the $[0,1]^n \times \textbf  {T}$ space due to adding of new particles at a small portion of the domain, pointer to these new particles will be stored in external link list.}}{5}}
 \newlabel{fig:Particle_adding_with_link}{{3}{5}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3}Hash function}{5}}
 \newlabel{eq:hash_function}{{3}{5}}
@@ -53,6 +53,7 @@
 \newlabel{fig:Work_flow_adjust}{{4}{6}}
 \citation{suzuki2005numerical}
 \citation{suzuki2005numerical}
+\citation{monaghan1992smoothed,monaghan2005smoothed,price2012smoothed,rosswog2009astrophysical,monaghan2012smoothed}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Numerical Test}{7}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Governing equations\cite  {suzuki2005numerical} and boundary conditions}{7}}
 \newlabel{eq:gov-cs-rho}{{4}{7}}
@@ -66,28 +67,27 @@
 \newlabel{eq:gov-na}{{12}{7}}
 \newlabel{eq:gov-ng}{{13}{7}}
 \newlabel{eq:gov-ns}{{14}{7}}
-\citation{monaghan1992smoothed,monaghan2005smoothed,price2012smoothed,rosswog2009astrophysical,monaghan2012smoothed}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Discretized governing equations with SPH}{7}}
+\newlabel{eq:gov-sph-d1}{{15}{7}}
+\newlabel{eq:gov-sph-d2}{{16}{7}}
+\newlabel{eq:gov-sph-v}{{17}{7}}
+\newlabel{eq:gov-sph-e}{{18}{7}}
 \citation{monaghan1992smoothed}
 \citation{monaghan2011turbulence}
 \newlabel{fig:Involved_initial}{{3}{8}}
 \newlabel{fig:Involved_domain_adjusting}{{3}{8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Domain adjusting based on Involved flag of particles}}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces  Adjusting the domain based on Involved flag of particles}}{8}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Computational domain at $t=t0$}}}{8}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Computational domain at $t=t0 + \delta t$}}}{8}}
 \newlabel{fig:Domain_adjusting}{{5}{8}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Discretized governing equations with SPH}{8}}
-\newlabel{eq:gov-sph-d1}{{15}{8}}
-\newlabel{eq:gov-sph-d2}{{16}{8}}
-\newlabel{eq:gov-sph-v}{{17}{8}}
-\newlabel{eq:gov-sph-e}{{18}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Execution time of test case 1 and test case 2}}{8}}
+\newlabel{fig:2cases_time}{{6}{8}}
 \newlabel{eq:gov-update-pos}{{21}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Influence of total work load on strong scalability}}{8}}
+\newlabel{fig:2cases_efficiency}{{7}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Strong scalability of 3D domain decomposition and 2D domain decomposition}}{8}}
+\newlabel{fig:2D_vs_3D_efficiency}{{8}{8}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Solver performance}{8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Excuting time of test case 1 and test case 2}}{9}}
-\newlabel{fig:2cases_time}{{6}{9}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Influnece of total work load on strong scalability}}{9}}
-\newlabel{fig:2cases_efficiency}{{7}{9}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Strong scalability of 3D domain decomposition and 2D domain decomposition}}{9}}
-\newlabel{fig:2D_vs_3D_efficiency}{{8}{9}}
 \@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Weak scalability test results}}{9}}
 \newlabel{fig:weak_loglog}{{9}{9}}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{9}}
@@ -117,7 +117,7 @@
 \bibcite{monaghan1992smoothed}{22}
 \bibcite{monaghan2005smoothed}{23}
 \bibcite{price2012smoothed}{24}
-\@writefile{toc}{\contentsline {section}{References}{10}}
 \bibcite{rosswog2009astrophysical}{25}
 \bibcite{monaghan2012smoothed}{26}
 \bibcite{monaghan2011turbulence}{27}
+\@writefile{toc}{\contentsline {section}{References}{10}}
