@@ -147,10 +147,6 @@ J.~Monaghan, ``Smoothed particle hydrodynamics,'' \emph{Reports on progress in
 D.~J. Price, ``Smoothed particle hydrodynamics and magnetohydrodynamics,''
   \emph{Journal of Computational Physics}, vol. 231, no.~3, pp. 759--794, 2012.
 
-\bibitem{rosswog2009astrophysical}
-S.~Rosswog, ``Astrophysical smooth particle hydrodynamics,'' \emph{New
-  Astronomy Reviews}, vol.~53, no.~4, pp. 78--104, 2009.
-
 \bibitem{monaghan2012smoothed}
 J.~Monaghan, ``Smoothed particle hydrodynamics and its diverse applications,''
   \emph{Annual Review of Fluid Mechanics}, vol.~44, pp. 323--346, 2012.
@@ -159,5 +155,11 @@ J.~Monaghan, ``Smoothed particle hydrodynamics and its diverse applications,''
 J.~J. Monaghan, ``A turbulence model for smoothed particle hydrodynamics,''
   \emph{European Journal of Mechanics-B/Fluids}, vol.~30, no.~4, pp. 360--370,
   2011.
+
+\bibitem{PlumePhoto}
+\BIBentryALTinterwordspacing
+Sakurajima news reports. [Online]. Available:
+  \url{https://www.ucl.ac.uk/vco2/NewsReports/Sakurajima_News_Reports}
+\BIBentrySTDinterwordspacing
 
 \end{thebibliography}

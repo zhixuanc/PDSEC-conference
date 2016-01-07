@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  7 JAN 2016 09:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  7 JAN 2016 16:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -256,18 +256,18 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 (./Paper for submission.aux)
 \openout1 = `"Paper for submission.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 331.
-LaTeX Font Info:    ... okay on input line 331.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 331.
-LaTeX Font Info:    ... okay on input line 331.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 331.
-LaTeX Font Info:    ... okay on input line 331.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 331.
-LaTeX Font Info:    ... okay on input line 331.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 331.
-LaTeX Font Info:    ... okay on input line 331.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 331.
-LaTeX Font Info:    ... okay on input line 331.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 328.
+LaTeX Font Info:    ... okay on input line 328.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 328.
+LaTeX Font Info:    ... okay on input line 328.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 328.
+LaTeX Font Info:    ... okay on input line 328.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 328.
+LaTeX Font Info:    ... okay on input line 328.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 328.
+LaTeX Font Info:    ... okay on input line 328.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 328.
+LaTeX Font Info:    ... okay on input line 328.
 
 (/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -333,128 +333,28 @@ e
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 399.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 398.
 
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 399.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 398.
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ¦ in font ptmr7t!
-
-Underfull \hbox (badness 4779) in paragraph at lines 432--459
-[]\OT1/ptm/m/n/10 SPH (smoothed par-ti-cle hy-dro-dy-nam-ics) is a
- []
-
-
-Underfull \hbox (badness 4168) in paragraph at lines 432--459
-\OT1/ptm/m/n/10 memory en-vi-ron-ments. Dominguez [6] pre-sented
- []
-
-
-Underfull \hbox (badness 1975) in paragraph at lines 432--459
-\OT1/ptm/m/n/10 code us-ing the mes-sage pass-ing in-ter-face (MPI)
- []
-
-
-Underfull \hbox (badness 4569) in paragraph at lines 432--459
-\OT1/ptm/m/n/10 However, most im-ple-men-ta-tion of par-al-lel SPH
- []
-
-
-Underfull \hbox (badness 2990) in paragraph at lines 432--459
-\OT1/ptm/m/n/10 Pre-dic-tion of such com-pli-cated phe-nom-ena with
- []
-
-
-Underfull \hbox (badness 2781) in paragraph at lines 432--459
-\OT1/ptm/m/n/10 (such as re-al-is-tic wind field, erup-tion bound-ary
- []
-
-
-Underfull \hbox (badness 2065) in paragraph at lines 432--459
-\OT1/ptm/m/n/10 and cu-bics for three di-men-sion, as buck-ets. As
- []
-
-
-Underfull \hbox (badness 3250) in paragraph at lines 432--459
-\OT1/ptm/m/n/10 for the ac-tual stor-age of data rep-re-sent-ing the
- []
-
-
-Underfull \hbox (badness 7740) in paragraph at lines 432--459
-\OT1/ptm/m/n/10 phys-i-cal quan-ti-ties as-so-ci-ated to each par-ti-cle,
- []
-
-
-Underfull \hbox (badness 1400) in paragraph at lines 432--459
-\OT1/ptm/m/n/10 par-ti-cle (po-si-tion, ve-loc-ity, den-sity) are stored in
- []
-
-
-Underfull \hbox (badness 2158) in paragraph at lines 432--459
-\OT1/ptm/m/n/10 pro-gram-ming and com-pu-ta-tion. So we adopt an
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 432--459
-\OT1/ptm/m/n/10 To the best of the au-thor's knowl-edge, no
- []
-
-
-Underfull \hbox (badness 3568) in paragraph at lines 432--459
-\OT1/ptm/m/n/10 For JPUE sim-u-la-tion, such fea-ture will greatly
- []
-
-
-Underfull \hbox (badness 2134) in paragraph at lines 432--459
-\OT1/ptm/m/n/10 The data struc-ture, par-ti-cle and bucket in-dex-ing
- []
-
-
-Underfull \hbox (badness 6510) in paragraph at lines 432--459
-\OT1/ptm/m/n/10 strate-gies, do-main de-com-po-si-tion, dy-namic load
- []
-
-
-Underfull \hbox (badness 3701) in paragraph at lines 432--459
-\OT1/ptm/m/n/10 in this pa-per can be eas-ily adopted by other
- []
-
-
-Underfull \hbox (badness 1478) in paragraph at lines 432--459
-\OT1/ptm/m/n/10 im-ple-men-ta-tions of any mesh-free meth-ods(include
- []
-
-
-Underfull \hbox (badness 3189) in paragraph at lines 432--459
-\OT1/ptm/m/n/10 SPH). The flex-i-bil-ity of data ac-cess-ing en-ables
- []
-
-
-Underfull \hbox (badness 3229) in paragraph at lines 432--459
-\OT1/ptm/m/n/10 more com-pli-cated prob-lems and us-ing of more
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 432--459
-
- []
-
-[1{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+ [1{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
 <Work_flow.jpg, id=9, 721.69624pt x 910.40125pt>
 File: Work_flow.jpg Graphic file (type jpg)
  <use Work_flow.jpg>
-Package pdftex.def Info: Work_flow.jpg used on input line 462.
+Package pdftex.def Info: Work_flow.jpg used on input line 460.
 (pdftex.def)             Requested size: 245.37347pt x 309.53232pt.
 
-Overfull \hbox (24.0466pt too wide) in paragraph at lines 462--463
+Overfull \hbox (24.0466pt too wide) in paragraph at lines 460--461
  [][] 
  []
 
@@ -462,7 +362,7 @@ Overfull \hbox (24.0466pt too wide) in paragraph at lines 462--463
 File: SFC_particles_buckets.jpg Graphic file (type jpg)
 
 <use SFC_particles_buckets.jpg>
-Package pdftex.def Info: SFC_particles_buckets.jpg used on input line 483.
+Package pdftex.def Info: SFC_particles_buckets.jpg used on input line 481.
 (pdftex.def)             Requested size: 144.53375pt x 108.40031pt.
 
 <SFC_particles_buckets_partition.jpg, id=14, 963.6pt x 722.7pt>
@@ -470,159 +370,119 @@ File: SFC_particles_buckets_partition.jpg Graphic file (type jpg)
 
 <use SFC_particles_buckets_partition.jpg>
 Package pdftex.def Info: SFC_particles_buckets_partition.jpg used on input line
- 486.
+ 484.
 (pdftex.def)             Requested size: 154.17915pt x 115.63435pt.
- [3 <./Work_flow.jpg>]
-Underfull \hbox (badness 7099) in paragraph at lines 515--520
-\OT1/ptm/m/n/10 delet-ing prop-er-ties when there is no con-flict.
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 515--520
-
- []
-
-[4 <./SFC_particles_buckets.jpg> <./SFC_particles_buckets_partition.jpg>]
+ [3 <./Work_flow.jpg>] [4 <./SFC_particles_buckets.jpg> <./SFC_particles_bucket
+s_partition.jpg>]
 <Particle_adding_with_link.jpg, id=27, 963.6pt x 722.7pt>
 File: Particle_adding_with_link.jpg Graphic file (type jpg)
 
 <use Particle_adding_with_link.jpg>
-Package pdftex.def Info: Particle_adding_with_link.jpg used on input line 523.
+Package pdftex.def Info: Particle_adding_with_link.jpg used on input line 521.
 (pdftex.def)             Requested size: 245.7221pt x 184.29156pt.
 
-Overfull \hbox (24.39523pt too wide) in paragraph at lines 523--524
+Overfull \hbox (24.39523pt too wide) in paragraph at lines 521--522
  [][] 
  []
 
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 524.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 522.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (16.3517pt too wide) in paragraph at lines 568--582
+Overfull \hbox (16.3517pt too wide) in paragraph at lines 566--580
  [][] 
  []
 
 [5 <./Particle_adding_with_link.jpg>]
-<Work_flow_adjust.jpg, id=32, 721.69624pt x 910.40125pt>
+<Work_flow_adjust.jpg, id=33, 721.69624pt x 910.40125pt>
 File: Work_flow_adjust.jpg Graphic file (type jpg)
 
 <use Work_flow_adjust.jpg>
-Package pdftex.def Info: Work_flow_adjust.jpg used on input line 601.
-(pdftex.def)             Requested size: 238.16049pt x 300.43333pt.
+Package pdftex.def Info: Work_flow_adjust.jpg used on input line 593.
+(pdftex.def)             Requested size: 259.81046pt x 327.7442pt.
 
-Overfull \hbox (16.83362pt too wide) in paragraph at lines 601--602
+Overfull \hbox (38.48358pt too wide) in paragraph at lines 593--594
  [][] 
  []
 
-<Involved_initial.jpg, id=33, 963.6pt x 722.7pt>
+<Involved_initial.jpg, id=34, 963.6pt x 722.7pt>
 File: Involved_initial.jpg Graphic file (type jpg)
  <use Involved_initial.jpg>
-Package pdftex.def Info: Involved_initial.jpg used on input line 610.
-(pdftex.def)             Requested size: 231.26872pt x 173.45154pt.
+Package pdftex.def Info: Involved_initial.jpg used on input line 613.
+(pdftex.def)             Requested size: 221.62334pt x 166.2175pt.
 
-<Involved_domain_adjusting.jpg, id=34, 963.6pt x 722.7pt>
+<Involved_domain_adjusting.jpg, id=35, 963.6pt x 722.7pt>
 File: Involved_domain_adjusting.jpg Graphic file (type jpg)
 
 <use Involved_domain_adjusting.jpg>
-Package pdftex.def Info: Involved_domain_adjusting.jpg used on input line 613.
-(pdftex.def)             Requested size: 231.26872pt x 173.45154pt.
+Package pdftex.def Info: Involved_domain_adjusting.jpg used on input line 616.
+(pdftex.def)             Requested size: 221.62334pt x 166.2175pt.
 
-Underfull \hbox (badness 7238) in paragraph at lines 595--625
-[]\OT1/ptm/m/n/10 As a La-grangian method, SPH is able to
+Underfull \hbox (badness 3058) in paragraph at lines 598--621
+\OT1/ptm/m/n/10 the par-ti-cle class. Par-ti-cles are cat-e-go-rized into
  []
 
-
-Underfull \hbox (badness 1881) in paragraph at lines 595--625
-\OT1/ptm/m/n/10 au-to-mat-i-cally de-fine and ad-just its com-pu-ta-tional
- []
-
-
-Underfull \hbox (badness 3623) in paragraph at lines 595--625
-\OT1/ptm/m/n/10 of the SPH par-ti-cles de-fines the com-pu-ta-tional
- []
-
-
-Underfull \hbox (badness 3323) in paragraph at lines 595--625
-\OT1/ptm/m/n/10 with these sta-tion-ary par-ti-cles. If sim-u-lat-ing of
- []
-
-
-Underfull \hbox (badness 1755) in paragraph at lines 595--625
-\OT1/ptm/m/n/10 groups based on the value of the involved-flag:
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 595--625
-\OT1/ptm/m/n/10 in-volved (involved-flag=2), po-ten-tially in-volved
- []
-
-
-Underfull \hbox (badness 4779) in paragraph at lines 595--625
-\OT1/ptm/m/n/10 com-mu-ni-ca-tion and com-pu-ta-tion as-so-ci-ated with
- []
-
-
-Underfull \hbox (badness 2221) in paragraph at lines 595--625
-\OT1/ptm/m/n/10 un-in-volved par-ti-cles can be ig-nored. That is to
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 595--625
-
- []
-
-
-Underfull \vbox (badness 2698) has occurred while \output is active []
-
- [6 <./Work_flow_adjust.jpg>] [7] <2cases_time.jpg, id=45, 729.72626pt x 421.57
-5pt>
+[6 <./Work_flow_adjust.jpg>] <2cases_time.jpg, id=40, 729.72626pt x 421.575pt>
 File: 2cases_time.jpg Graphic file (type jpg)
 
 <use 2cases_time.jpg>
-Package pdftex.def Info: 2cases_time.jpg used on input line 732.
+Package pdftex.def Info: 2cases_time.jpg used on input line 726.
 (pdftex.def)             Requested size: 240.81041pt x 139.12018pt.
 
-Overfull \hbox (19.48354pt too wide) in paragraph at lines 732--733
+Overfull \hbox (19.48354pt too wide) in paragraph at lines 726--727
  [][] 
  []
 
-<2cases_efficiency.jpg, id=46, 744.7825pt x 421.575pt>
+<2cases_efficiency.jpg, id=41, 744.7825pt x 421.575pt>
 File: 2cases_efficiency.jpg Graphic file (type jpg)
 
 <use 2cases_efficiency.jpg>
-Package pdftex.def Info: 2cases_efficiency.jpg used on input line 739.
+Package pdftex.def Info: 2cases_efficiency.jpg used on input line 733.
 (pdftex.def)             Requested size: 245.77898pt x 139.12018pt.
 
-Overfull \hbox (24.4521pt too wide) in paragraph at lines 739--740
+Overfull \hbox (24.4521pt too wide) in paragraph at lines 733--734
  [][] 
  []
 
-<2D_vs_3D_efficiency.jpg, id=47, 756.8275pt x 421.575pt>
+<2D_vs_3D_efficiency.jpg, id=42, 756.8275pt x 421.575pt>
 File: 2D_vs_3D_efficiency.jpg Graphic file (type jpg)
 
 <use 2D_vs_3D_efficiency.jpg>
-Package pdftex.def Info: 2D_vs_3D_efficiency.jpg used on input line 746.
+Package pdftex.def Info: 2D_vs_3D_efficiency.jpg used on input line 740.
 (pdftex.def)             Requested size: 249.75385pt x 139.12018pt.
 
-Overfull \hbox (28.42697pt too wide) in paragraph at lines 746--747
+Overfull \hbox (28.42697pt too wide) in paragraph at lines 740--741
  [][] 
  []
 
-<weak_loglog.jpg, id=48, 679.53876pt x 421.575pt>
+<weak_loglog.jpg, id=43, 679.53876pt x 421.575pt>
 File: weak_loglog.jpg Graphic file (type jpg)
  <use weak_loglog.jpg>
-Package pdftex.def Info: weak_loglog.jpg used on input line 753.
+Package pdftex.def Info: weak_loglog.jpg used on input line 747.
 (pdftex.def)             Requested size: 237.84213pt x 147.55345pt.
 
-Overfull \hbox (16.51526pt too wide) in paragraph at lines 753--754
+Overfull \hbox (16.51526pt too wide) in paragraph at lines 747--748
  [][] 
  []
 
+<plume_photo.jpg, id=44, 305.14pt x 468.75125pt>
+File: plume_photo.jpg Graphic file (type jpg)
+ <use plume_photo.jpg>
+Package pdftex.def Info: plume_photo.jpg used on input line 763.
+(pdftex.def)             Requested size: 108.11826pt x 128.03079pt.
+
+<Plume_simulation.jpg, id=45, 680.5425pt x 791.95876pt>
+File: Plume_simulation.jpg Graphic file (type jpg)
+
+<use Plume_simulation.jpg>
+Package pdftex.def Info: Plume_simulation.jpg used on input line 766.
+(pdftex.def)             Requested size: 108.12059pt x 128.03317pt.
+ [7]
+Overfull \vbox (4.84291pt too high) has occurred while \output is active []
+
+
 [8 <./Involved_initial.jpg> <./Involved_domain_adjusting.jpg> <./2cases_time.jp
-g> <./2cases_efficiency.jpg>] [9 <./2D_vs_3D_efficiency.jpg> <./weak_loglog.jpg
->] (./Paper for submission.bbl
+g> <./2cases_efficiency.jpg> <./2D_vs_3D_efficiency.jpg> <./weak_loglog.jpg>]
+[9 <./plume_photo.jpg> <./Plume_simulation.jpg>] (./Paper for submission.bbl
 Underfull \hbox (badness 1596) in paragraph at lines 67--72
 \OT1/ptm/m/n/9 Gesteira, S. Long-shaw, R. Canelas, R. Va-con-dio,
  []
@@ -636,6 +496,12 @@ Underfull \hbox (badness 1383) in paragraph at lines 133--137
 Underfull \hbox (badness 2020) in paragraph at lines 147--149
 \OT1/ptm/m/n/9 mag-ne-to-hy-dro-dy-nam-ics,'' \OT1/ptm/m/it/9 Jour-nal of Com-p
 u-ta-tional
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--164
+\OT1/ptm/m/n/9 https : / / www . ucl . ac . uk / vco2 / NewsReports / Sakurajim
+a[]
  []
 
 )
@@ -652,11 +518,11 @@ Before submitting the final camera ready copy, remember to:
 
 [10] (./Paper for submission.aux) ) 
 Here is how much of TeX's memory you used:
- 4111 strings out of 493117
- 64413 string characters out of 6135433
- 140986 words of memory out of 5000000
- 7497 multiletter control sequences out of 15000+600000
- 48147 words of font info for 87 fonts, out of 8000000 for 9000
+ 4134 strings out of 493117
+ 64767 string characters out of 6135433
+ 144015 words of memory out of 5000000
+ 7514 multiletter control sequences out of 15000+600000
+ 49791 words of font info for 92 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
  38i,19n,47p,1839b,360s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/en
@@ -674,10 +540,10 @@ r/local/texlive/2014/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local
 /texlive/2014/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2
 014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2014/texmf-
 dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on "Paper for submission.pdf" (10 pages, 939443 bytes).
+Output written on "Paper for submission.pdf" (10 pages, 1828627 bytes).
 PDF statistics:
- 105 PDF objects out of 1000 (max. 8388607)
+ 107 PDF objects out of 1000 (max. 8388607)
  67 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 56 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 66 words of extra memory for PDF output out of 10000 (max. 10000000)
 

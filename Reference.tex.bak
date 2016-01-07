@@ -1245,3 +1245,10 @@
   year={1999},
   publisher={Springer}
 }
+
+%Someweb site:
+@electronic{PlumePhoto,
+ authors   = "UCL Volcano $CO_2$ Group",
+ title     = "Sakurajima News Reports",
+ url       = "https://www.ucl.ac.uk/vco2/NewsReports/Sakurajima_News_Reports"
+}

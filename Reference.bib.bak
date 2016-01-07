@@ -1,4 +1,3 @@
-
 %boundary conditions imposing for Hyperbolic system of equaiton.
 @article{thompson1990time,
   title={Time-dependent boundary conditions for hyperbolic systems, II},
@@ -1017,7 +1016,7 @@
 
 @article{monaghan2011turbulence,
   title={A turbulence model for Smoothed Particle Hydrodynamics},
-  author={Monaghan, JJ},
+  author={Monaghan, Joe J},
   journal={European Journal of Mechanics-B/Fluids},
   volume={30},
   number={4},
@@ -1245,4 +1244,11 @@
   pages={89--111},
   year={1999},
   publisher={Springer}
+}
+
+%Someweb site:
+@electronic{PlumePhoto,
+ authors   = "UCL Volcano $CO_2$ Group",
+ title     = "Sakurajima News Reports",
+ url       = "https://www.ucl.ac.uk/vco2/NewsReports/Sakurajima_News_Reports"
 }

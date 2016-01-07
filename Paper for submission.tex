@@ -126,9 +126,6 @@
 % and later.
 
 
-
-
-
 % *** GRAPHICS RELATED PACKAGES ***
 %
 \ifCLASSINFOpdf
@@ -343,22 +340,24 @@
 % use a multiple column layout for up to three different
 % affiliations
 \author{\IEEEauthorblockN{Zhixuan Cao, Abani Patra}
-\IEEEauthorblockA{Department of Mechanical and Aerospace Engineering\\
+\IEEEauthorblockA{Department of MAE \\%Mechanical and Aerospace Engineering
  The University at Buffalo\\
  Buffalo, New York 14260\\
 Email: zhixuanc@buffalo.edu, abani@buffalo.edu}
 \and
-\IEEEauthorblockN{Matt Jones}
+\IEEEauthorblockN{Matthew Jones, Jaroslaw Zola}
 \IEEEauthorblockA{Center for Computational Research\\
+Department of CSE \\%Computer Science and Engineering
 The University at Buffalo\\
 Buffalo, New York 14260\\
-Email: jonesm@buffalo.edu}
+Email: jonesm@buffalo.edu, \\ jzola@buffalo.edu}
 %\and
-%\IEEEauthorblockN{James Kirk\\ and Montgomery Scott}
-%\IEEEauthorblockA{Starfleet Academy\\
-%San Francisco, California 96678-2391\\
-%Telephone: (800) 555--1212\\
-%Fax: (888) 555--1212}
+%\IEEEauthorblockN{Jaroslaw Zola}
+%\IEEEauthorblockA{The University at Buffalo\\
+%Department of Computer Science and Engineering\\
+% The University at Buffalo\\
+% Buffalo, New York 14260\\
+%Email:jzola@buffalo.edu}
 }
 % conference papers do not typically use \thanks and this command
 % is locked out in conference mode. If really needed, such as for
@@ -401,10 +400,10 @@ Email: jonesm@buffalo.edu}
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-This paper presents a parallel implementation of smoothed particle hydrodynamics (SPH) method using the message passing interface (MPI) standard to simulate a turbulent jet or plume which is ejected from a nozzle into a uniform environment(JPUE). Background grid is used to reduce neighbors searching cost and decompose (redecompose) the domain. Space Filing Curve(SFC) based index is adopted to assign an unique identifier to each background grid. As simulation of JUPE requires adding of new particles during simulation, time-dependent SFC based indexes are assigned to particles to guarantee uniqueness of identifiers.  
+This paper presents a parallel implementation of smoothed particle hydrodynamics (SPH) method using the message passing interface (MPI) standard to simulate a turbulent jet or plume which is ejected from a nozzle into a uniform environment(JPUE). Background grid is used to reduce neighbors searching cost and to decompose (redecompose) the domain. Space Filing Curve(SFC) based index is adopted to assign an unique identifier to each background grid. As simulation of JUPE requires adding of new particles during simulation, time-dependent SFC based indexes are assigned to particles to guarantee uniqueness of identifiers.  
 %to distinguish particles added at the same position but different simulation time step. 
 Both particle and background grid are managed by hashtables which ensure quick and flexible accessing, adding and deleting of element. %Additional link list attached to the hashtable is used to handle hash conflicts.
- A SFC based three dimensional domain decomposition and a dynamic load balancing strategy are implemented to ensure good load balance. In addition, computational domain is adjusted during simulation to reduce computational cost. 
+A SFC based three dimensional domain decomposition and a dynamic load balancing strategy are implemented to ensure good load balance. In addition, computational domain is adjusted during simulation to reduce computational cost. 
 Numerical tests show that our code has acceptable strong scalability and good weak scalability.
 These strategies can be further applied to many other implementations of meshfree methods, especially those implementations that require irregular
 particle distributions, adding and deleting of particles and leverage adaptive background grids.
@@ -429,7 +428,7 @@ particle distributions, adding and deleting of particles and leverage adaptive b
 
 \section{Introduction}
 % no \IEEEPARstart
-SPH (smoothed particle hydrodynamics) is a meshless scheme, initially developed for astrophysical applications by Lucy\cite{lucy1977numerical} and Gingold and Monaghan\cite{gingold1977smoothed}. 
+SPH is a meshless scheme, initially developed for astrophysical applications by Lucy\cite{lucy1977numerical} and Gingold and Monaghan\cite{gingold1977smoothed}. 
 Subsequently it was extended to computational fluid mechanics. 
 A lot of research has appeared  on  parallellization of SPH in the last few years. 
 Goozee\cite{goozee2003distributed} implemented a simple SPH code using MPI, OpenMP and BSP. 
@@ -440,7 +439,7 @@ Ferrari\cite{ferrari2009new} parallelized a 3D SPH code using the message passin
 Kumar et. al. \cite{kumar2013parallel} implemented a parallel Godunov SPH in simulation of granular flows.
 Crespo\cite{crespo2015dualsphysics} used the GPUs to accelerate DualSPHysics by up to two orders of magnitude compared to the performance of the serial version.\\
 However, most implementation of parallel SPH method presented to date are limited to standard SPH and benchmark problems like dam break, or relatively
-simple scenarios like breaking-waves, floodings etc. Work on more complicated problems, such as eruption of volcano plume which is essentially a mult-phase turbulent flow,
+simple scenarios like breaking-waves, floodings etc. Work on more complicated problems, such as eruption of volcano plume (figure \ref{fig:Plume}) which is essentially a mult-phase turbulent flow,
 ejection mixing process accompanied by microphysics phenomena like phase change of water, aggregation, reaction etc. is relatively rare. 
 Prediction of such complicated phenomena with acceptable accuracy at given time window requires resolutions (very high particle counts) that cannot been accomplished without parallel computing. What's more, imposing of some types of boundary conditions (such as realistic wind field, eruption boundary condition) requires dynamically adding and removing of particles during simulation. This requires efficient and more flexible data management scheme. What we need to point out is that the benefit of flexible data management strategies are not only limited to specific implementations of SPH. Actually, flexibility in data management are more critical for several advanced techniques of SPH, such as dynamic particle splitting techniques\cite{vacondio2012accurate, feldman2007dynamic}, which will give greater resolution at the area of interest by splitting one large particle to several smaller ones.
 In this paper, we implement SPH to simulate a simplified version of complicated volcanic plume: the JPUE, and develop data management schemes for it.\\
@@ -452,10 +451,9 @@ Any implementation of SPH code requires efficient searching and updating of neig
 As for the actual storage of data representing the physical quantities associated to each particle, different strategies have been adopted in existing implementations of SPH. 
 In both SPHysics\cite{dominguez2011optimization} and DualSPHysics\cite{crespo2015dualsphysics}, The physical quantities of each particle (position, velocity, density…) are stored in arrays, and the particles (and the arrays with particle data) are reordered following the order of the cells. This has two advantages: 1) access pattern is more regular and more efficient, 2) it is ease to identify the particles that belong to a cell by using a range since the first particle of each cell is known. But adding, deleting and especially accessing of particles are cumbersome. Ferrari\cite{ferrari2009new} adopted linked lists using pointers so that particles can be deleted or added during the simulation. Storage problems caused by fix-size arrays are thereby also eliminated. We define C++ classes which contains all data of particle and bucket. As for the management of data, we adopt a hash table to store pointers to particles and buckets, which gives us not only flexibility of deleting and adding element, but also quicker access compared with linked list. Instead of using the "nature manner" to number particles, we adopt SFC based index to give each particle and background bucket an unique identifier -- a strategy known to preserve some locality at minimal cost. The SFC based numbering strategy is further extended to include time step information so that particles added at the same position but different time will have different identifiers. 
 As for domain decomposition, even though more complicated graph-based partition tools\cite{biswas1999experiments} might get higher quality decomposition, they requires much more effort in programming and computation. So we adopt an easy-programming scheme based on SFC \cite{patra1999efficient}.\\
-To the best of the author's knowledge, no implementation of SPH has the feature of adjusting computational domain based on simulation needs. For JPUE simulation, such feature will greatly reduce computational cost by avoiding computing of uninfluenced fluid. This feature is accomplished by adding a scan function to monitor the outermost layer of the domain and turn ghost particles to real particles at proper time. 
+To the best of the author's knowledge, no implementation of SPH has the feature of adjusting computational domain based on simulation needs. For JPUE simulation, such feature will greatly reduce computational cost by avoiding computing of uninfluenced fluid. This feature is accomplished by adding a scan function to monitor the outermost layer of the domain and turn ghost particles to real particles at proper time.\\
 %The computational cost of this additional scan function is low.
-\\
-The data structure, particle and bucket indexing strategies, domain decomposition, dynamic load balancing method and domain adjusting strategies in this paper can be easily adopted by other implementations of any meshfree methods(include SPH). The flexibility of data accessing enables implementing of meshless methods for solving of more complicated problems and using of more advanced techniques.\\
+The data structure, particle and bucket indexing strategies, domain decomposition, dynamic load balancing method and domain adjusting strategies in this paper can be easily adopted by other implementations of any meshfree methods(include SPH). The flexibility of data accessing enables implementing of meshless methods for solving of more complicated problems and using of more advanced techniques.
 \section{Data Structure and Load Balance}
 \begin{figure}[!t]
 \centering
@@ -463,7 +461,7 @@ The data structure, particle and bucket indexing strategies, domain decompositio
 \caption{Basic work flow for SPH code}
 \label{fig:Work_flow}
 \end{figure}
-SPH is a meshfree, Lagrangian method. The domain is discretized by particles and the position of each particle is updated at every time step. The physical laws (such as conservation laws of mass, momentum and energy) written in the form of partial differential equations need to be transformed into the Lagrangian particle formalism of SPH. Using a kernel function that provides the weighted estimate of the field variables in the neighborhood of a discrete point (particle), the integral equations are evaluated as sums over neighbor particles. Only particles located within support of kernel function will interact. Thus, physical properties (position, density, velocity, internal energy, pressure) are updated based on its neighbors. So a neighbor searching needs to be carried out before updating of physical properties. We use buckets which contain all particles associated with a sub-domain 
+SPH is a meshfree, Lagrangian method. The domain is discretized by particles and the position of each particle is updated at every time step. The physical laws (such as conservation laws of mass, momentum and energy) written in the form of partial differential equations need to be transformed into the Lagrangian particle formalism of SPH. Using a kernel function that provides the weighted estimate of the field variables in the neighborhood of a discrete point (particle), the integral equations are evaluated as sums over neighbor particles. Only particles located within support of kernel function will interact. Thus, physical properties (density, velocity, internal energy...) are updated based on its neighbors. So a neighbor searching needs to be carried out before updating of physical properties. We use buckets which contain all particles associated with a sub-domain 
 and are kept fixed in time during the entire simulation, to reduce search cost (since search can now be restricted to only neighboring domains).
 Domain decomposition will be based on an SFC going through centroids of all buckets. A basic work flow of our SPH code is shown in figure \ref{fig:Work_flow}.\\
 Particles need to be added and(or) removed during simulation of JPUE problems. Wall boundary conditions in SPH can be imposed either by adding a force term or using ghost particles. We adopt the latter one in our simulation. As our computational domain will be adjusted during simulation, wall ghost particles need to be added during simulation. New particles also need to be added for the eruption boundary condition. 
@@ -502,11 +500,11 @@ Several features of such indexing scheme are suitable for SPH:
 \item Objects that locate closely in the Euclidian space will also be close to each other in the one dimensional SFC key space in the mean sense. Since SPH particles only interact with its neighbors, geometric locality can be exploited for efficient storage and retrieval of bucket and particle data.
 \item This type of key effectively generates a global address space. Globality of key and conservation of locality make it easy to partition the sorted key sequence and obtain a decompositiion of the problem.
 \end{itemize}
-We need to emphasize here is that in theory motion of particles will destroy locality established based on initial coordinates of particles. However, as particles are moving fairly regularly in a JPUE, the locality of most of particles is largely conserved during simulation. We will revisit this question for more chaotic flows and 
+We need to emphasize here that in theory motion of particles will destroy locality established based on initial coordinates of particles. However, as particles are moving fairly regularly in a JPUE, the locality of most of particles is largely conserved during simulation. We will revisit this question for more chaotic flows and 
 design a re-numbering method which is computationally cheap, to restore the locality.
 \subsection{Data structure}
 \subsubsection{Particle and bucket}
-The most basic data structure of SPH are particle, for problem description, and bucket, for neighbors searches and domain decomposition. Both are defined as classes in C++. Information that is contained in particle class can be categorized into six categories: ID(the key), affiliate(rank of the process that the particle belongs to), primitive variables (variables show up as unknowns in governing equations, e.g. density, velocity, energy), secondary variables (properties that can be computed from primitive variables, they are stored to avoid repeated computations eg. pressure, temperature), flags (indicators, such as indicator for ghost particle and real particles, indicator for particles of different phases  ) and neighbor information (it is a vector of particle keys in our application). Similarly,  Information that is contained in  a bucket class can also be categorized into different categories: ID(the key), affiliate(rank of the process that the bucket belong to), domain information (maximum and minimum coordinates, boundary information), flags (indicators, such as indicator for guest and non-guest, indicator for active and inactive), neighbor information (keys of 27 neighbor buckets for three dimension and keys of 9 neighbor buckets for two dimension including its own key) and owned particles. Objects defined based on these two classes are then accessed through hash tables.
+The most basic data structure of SPH are particle, for problem description, and bucket, for neighbors searches and domain decomposition. Both are defined as classes in C++. Information that is contained in particle class can be categorized into six categories: ID(the key), affiliate(rank of the process that the particle belongs to), primitive variables (variables show up as unknowns in governing equations, e.g. density, velocity), secondary variables (physical properties that can be computed from primitive variables, they are stored to avoid repeated computations eg. pressure, temperature), flags (indicators, such as indicator for ghost particle and real particles, indicator for particles of different phases) and neighbor information (it is a vector of particle keys in our application). Similarly,  Information that is contained in  a bucket class can also be categorized into different categories: ID, affiliate, domain information (maximum and minimum coordinates, boundary information), flags (indicators, such as indicator for guest and non-guest, indicator for active and inactive), neighbor information (keys of 27 neighbor buckets including its own key) and owned particles. Objects defined based on these two classes are then accessed through hash tables.
 \subsubsection{Hash table and hash confliction}
 As discussed at the beginning of this section, implementation of SPH in more realistic scenarios requires dynamic memory management and flexible data access. One of the fundamental data structures that satisfy such requirement is hash table. Another option is B-tree. We adopt hash table. An implementation of B-tree under a similar situation for mesh based methods can be found in other papers (eg.\cite{patra2003data}).\\
 Hash table, which is divided into slots, are array based data structure. Based on the key, the address-calculator(hashing) function determines in which slot the data should be stored. The hashing function maps from key to the slot index:
@@ -516,14 +514,14 @@ slot\,index = hash(key)
 The hash table has O(1) data access, adding and deleting properties when there is no conflict. How many conflicts will happen depends on both distribution of keys in the key space and size of the hash table. As the distribution of keys is determined by particles' initial locations (or centroids of buckets), the hash table size is under our control. We can use a very large hash table to minimize hash conflicts at the expense of sparse data distribution which will lead to high cache misses and low memory efficiency. Or alternately, we can use smaller hash table size to obtain high memory efficiency on the expense of having more hash conflicts. Patra et al.\cite{patra2003data} did numerical experiments to examine
 the effect of the table size on the different data management operations.\\
  %We should also do some experiment to optimize our hash table size.
-One way to handle hash conflicts is by using an additional sorted vector attached to the hash table. When several keys hash to the same slot, a vector will be created. The vector is sorted based on keys so that a binary search can be used to find the correct position for adding, deleting or retrieving. Another option to handle hash conflicts is using an additional link list which is more flexible in memory allocation. The average time complexity of binary search is O(log n) while that for linear search based on link list is O(n). However, accessing efficiency of link list is much lower than array based data structure, especially when the link list becomes longer. Choosing of proper way to handle hash conflicts greatly depends on the problem itself. For the test problem in this paper, successively adding particles at the bottom of the eject vent will lead to hash conflicts of many particles, which implies a long link list. But considering the very long conflicts only occur on several slots among millions (see figure \ref{fig:Particle_adding_with_link}), we still choose the link list to handle hash conflicts. This decision was made based on numerical experiments.\\
+One way to handle hash conflicts is by using an additional sorted vector attached to the hash table. When several keys hash to the same slot, a vector will be created. The vector is sorted based on keys so that a binary search can be used to find the correct position for adding, deleting or retrieving. Another option to handle hash conflicts is using an additional link list which is more flexible in memory allocation. The average time complexity of binary search is O(log n) while that for linear search based on link list is O(n). However, accessing efficiency of link list is much lower than array based data structure, especially when the link list becomes longer. Choosing of proper way to handle hash conflicts greatly depends on the problem itself. For the test problem in this paper, successively adding particles at the bottom of the eject vent will lead to hash conflicts of many particles, which implies a long link list. But considering the very long conflicts only occur on several slots among millions (see figure \ref{fig:Particle_adding_with_link}), we still choose the link list to handle hash conflicts. This decision was made based on numerical experiments.
 \subsubsection{Hash function}
 \begin{figure}[!t]
 \centering
 \includegraphics[scale=0.255]{Particle_adding_with_link}
 \caption{Non-uniform distribution of particles in the $[0,1]^n \times \textbf{T}$ space due to adding of new particles at a small portion of the domain, pointer to these new particles will be stored in external link list.}
 \label{fig:Particle_adding_with_link}
-\end{figure} 
+\end{figure}
 For time-independent keys, the hash function can be a simple function like:
 \begin{equation}
 \label{eq:hash_function}
@@ -535,7 +533,7 @@ Slot\,Index= &\frac{Key - Min\,Key}{Max\,Key - Min\,Key} \\
 One natural way to hash time-dependent SFC based key $[k,t]$ is to convert the two elements in the key into one number taking $k$ as the higher digit and $t$ as the lower digit of the large number. However, for JPUE simulation, even though ghost particles for wall boundary condition and pressure boundary condition also need to be added during simulation, places for adding of these two types of ghost particles are previsouly empty area. Only ghost particles for eruption boundary condition will be successively added at the same place: bottom of the vent. That is to say, particles are distributed non-uniformly in the $[0,1]^n \times \textbf{T}$ space as shown in figure \ref{fig:Particle_adding_with_link}. To avoid non-uniform, very sparse hash table and conserve locality of SFC, we only plug the first number, $k$, of the key, $[k,t]$, into the hashing function, equation (\ref{eq:hash_function}). 
 \subsection{Load balancing strategy}
 \subsubsection{Weighted work load}
-Particles used in the test problem can be categorized into four types based on the particle-type-flag: real particle, wall ghost particle, pressure ghost particle and eruption ghost particle. Ghost particles are for imposing of corresponding boundary conditions (see figure \ref{fig:Domain_adjusting}). As different types of particles involve different amount of computational work, shown by table \ref{tab:Computational_cost_particles} and table \ref{tab:Computational_cost_steps}, we assign different work load weight for different types of particles based on profilling data. Instead of simply using number of contained particles as work load for bucket, work load of each bucket is determined by summing up work load weight of all particles within the bucket. The SFC sequence passing through centroids of all buckets now becomes a weighted sequence. Domain decomposition  is conducted based on the weighted SFC of buckets.\\
+Particles used in the test problem can be categorized into four types based on the particle-type-flag: real particle, wall ghost particle, pressure ghost particle and eruption ghost particle. Ghost particles are for imposing of corresponding boundary conditions (see figure \ref{fig:Domain_adjusting}). As different types of particles involve different amount of computational work, shown by table \ref{tab:Computational_cost_particles} and table \ref{tab:Computational_cost_steps}, we assign different work load weight for different types of particles based on profilling data. Instead of simply using number of contained particles as work load for bucket, work load of each bucket is determined by summing up work load weight of all particles within the bucket. The SFC sequence passing through centroids of all buckets now becomes a weighted sequence. Domain decomposition  is conducted based on the weighted SFC of buckets.
 \begin{table}[t!]
   \renewcommand{\arraystretch}{1.2}
   \centering
@@ -588,43 +586,39 @@ Figure \ref{fig:SFC_domain_decomposition} shows how domain is decomposed based o
 %SFC for the two dimensional footprint is partitioned for domain decomposition. The work load of each object on the SFC of footprint buckets in $x-y$ plane will be the summation of work loads of all buckets above the footprint. 
 Movement of particles, adding of new particles, adjusting of domain will lead to important load imbalance between processes. To handle this, computational load is monitored at a given interval (The interval is optimized based on numerical experiments). And repartitioning is carried out when load imbalance is larger than a given tolerance.
 \\
-As some of the neighbor particles reside in other
-partitions. A set of  particles and buckets are used to synchronize data across partitions. To minimize communications, data is synchronized only where needed, using non-blocking MPI communications. 
+As some of the neighbor particles reside in other partitions. A set of  particles and buckets are used to synchronize data across partitions. To minimize communications, data is synchronized only where needed, using non-blocking MPI communications. 
 \section{Adjusting of Domain During Simulation}
+\begin{figure}[!t]
+\centering
+\includegraphics[scale=0.36]{Work_flow_adjust}
+\caption{Work flow that enables domain adjusting feature}
+\label{fig:Work_flow_adjust}
+\end{figure}
 %SPH particles can be viewed as discretization points\cite{diltsg1999moving}. 
 As a Lagrangian method, SPH is able to automatically define and adjust its computational domain as the position of the discretization points are updated at every time step.  The 
 collective support of the SPH particles defines the computational domain. However, for JPUE simulation (and many similar/related phenomena), where some fluid ejects into stationary fluid and gets mixed, the domain-adjusting feature of SPH cannot be taken advantage of as all of the stationary fluid must be represented. %Because the whole domain, which occupied by stationary fluid before ejected fluid reaching there, has to be discretized at the very beginning of simulation. 
 A lot of CPU time will be spent on computing associated with these stationary particles.  If simulating of stationary particles can be avoided, the computational cost will be reduced greatly. %To the best of the author's knowledge, no implementation of SPH has the feature of adjusting computational domain based on simulation. 
 We propose a simple strategy to add such feature in our code with low computational cost. We add a scan function to monitor the most outside layer of the domain. When the ejected fluid reaches the boundary of the current domain, ghost particles (for pressure boundary condition) will be turn to real particles and then add new ghost particles for pressure boundary condition. The original work flow (see figure \ref{fig:Work_flow}) is modified to enable such a feature (see figure \ref{fig:Work_flow_adjust}).\\
-\begin{figure}[!t]
-\centering
-\includegraphics[scale=0.33]{Work_flow_adjust}
-\caption{Work flow that enables domain adjusting feature}
-\label{fig:Work_flow_adjust}
-\end{figure}
 This is implemented by using a involved-flag, in the particle class. Particles are categorized into three groups based on the value of the involved-flag: involved (involved-flag=2), potentially involved (involved-flag=1), and not involved (involved-flag=0). The involved particles are particles that have already been affected by the mixing. The potentially involved particles are particles that have not been involved in mixing but are adjacent to involved particles and will thus be be involved in the near future. %These not involved particles are particles that far away from the eject source and are still at the initial state. For these not involved particles, it is meaningless to update its physical properties. As a consequence, searching for neighbors and data communitation for these particles are also unnecessary.
 All communication and computation associated with uninvolved particles can be ignored. That is to say, only potential involved and involved particles need to be simulated.
 As simulation progresses, the ejected fluid will reach larger area and more and more particles will be influenced. When originally stationary air is influenced by erupted material, the mass fraction of the erupted material will increase from zero to a positive value. So we can determine whether a particle is involved or not based on whether the mass fraction of that particle is larger than a given threshold ($10^{-5} $ in our simulation). Other physical properties, like velocity, can also serve as alternative "swich criteria".\\
-\begin{figure*}[!t]
-\centering
-\subfloat[Computational domain at $t=t0$]{\includegraphics[scale=0.24]{Involved_initial}}
-\label{fig:Involved_initial}
-\hfil
-\subfloat[Computational domain at $t=t0 + \delta t$]{\includegraphics[scale = 0.24]{Involved_domain_adjusting}}
-\label{fig:Involved_domain_adjusting}
-\caption{ Adjusting the domain based on involved-flag of particles}
-\label{fig:Domain_adjusting}
-\end{figure*}
 A similar scheme can also be deployed for buckets resulting in a categorization  of buckets. The additional complexity here is that potentially involved ghost particles must also be accounted for.
 %A has-involved-flag is added to bucket class, too. Buckets are then categorized into 3 types based on particles they contain: has involved (has-involved-flag=3), has potential involved(has-involved-flag=1) and has not involved (has-involved-flag=0). Bucket that has any involved particle will be set to be has involved (has-involved-flag=3). And its neighbor buckets that do not contain any involved particle will be set to be has potential involved. 
 %All particles in has involved buckets or has potential involved buckets will be set to be potential involved except for involved particles. There are two situations that will switch a has potential involved bucket to be a has involved bucket. First, when a involved particle enters a has potential involved bucket. Second, when mass fraction of a particle (It should be a potental involved particle) exceeds the threshold, this particle will turn to a involved particles and if this is the first involved particle in the bucket, the bucket will turn from a has potential involved bucket to a has involved bucekt.\\
 %The most outside buckets layer of all has potential involved buckets will be scaned every time after updating. If any of these buckets becomes has involved, the domain will be enlarged by turning the pressure ghost particles to real particles and switching involved-flag from 0 to 1. Also, the buckets that originally contain pressure ghost particles will become has potential involved. New pressure ghost particles and wall ghost particles will be added around the adjusted domain.
 This domain adjusting process is shown in figure \ref{fig:Domain_adjusting}.
-The work flow with domain adjusting is in figure \ref{fig:Work_flow_adjust}\\
-%
+The work flow with domain adjusting is in figure \ref{fig:Work_flow_adjust}.
+\begin{figure*}[!t]
+\centering
+\subfloat[Computational domain at $t=t0$]{\includegraphics[scale=0.23]{Involved_initial}}
+\label{fig:Involved_initial}
+\hfil
+\subfloat[Computational domain at $t=t0 + \Delta t$]{\includegraphics[scale = 0.23]{Involved_domain_adjusting}}
+\label{fig:Involved_domain_adjusting}
+\caption{ Adjusting the domain based on involved-flag of particles}
+\label{fig:Domain_adjusting}
+\end{figure*}
 \section{Numerical Test}
-%
-%
 Our target here is to develop data management and parallelization strategies for more complicated implementations of SPH which demand quick and flexible data access, deletion and addition. Thus, the test problem used should have such requirements. Simulations of a volcanic eruption, which is essentially a muti-phase, turbulent, ejection mixing flow accompanied with microphysics processes will place these demands on the framework. Thus, we adopt a two phase volcanic plume model\cite{suzuki2005numerical} as our test problem. In this model, one phase is air while another phase is ejected material.
 \subsection{Governing equations\cite{suzuki2005numerical} and boundary conditions}
 Based on Navier-Stokes equations and several simplifications, the governing equations in Eulerian form are:
@@ -676,11 +670,14 @@ n_s = \xi - n_g \label{eq:gov-ns}
 \end{equation}
 Where, $C_v$ is specific heat with constant volume, $n$ is mass fraction, $R$ is gas constant. The subscript 
 $m$ represents mixture of ejected material and air, $s$ is solid portion in ejected material, $g$ is gas portion in the ejected material and $a$ is air.\\
-In current model the initial domain is a 3D box. The boundaries are categorized into eruption vent (a circle area at the center of the bottom), wall boundary (box bottom), pressure boundary (Other faces of the box).
-At the vent, $T$, $\textbf{v}=\{0,0,150\}^T$, $p=1.01\times10^5 Pa$, $n_{g0}=0.05$ and mass discharge rate $\dot M$ is given. The radius of vent is determined from $\rho$, $\dot M$ and $\textbf{v}$.
-Velocity is zero for non-slip wall boundary. We assume the boundary to be adiabatic and the heat flux is zero on the boundary. The pressure of the surrounding atmosphere is specified on pressure boundaries. Except for the pressure, density, velocity, and energy will depend on the solution. We adpot ghost particles to impose these different type of boundary conditions (see figure \ref{fig:Domain_adjusting}). 
+In current model the initial domain is a 3D box. 
+%The boundaries are categorized into eruption vent (a circle area at the center of the bottom), wall boundary (box bottom), pressure boundary (Other faces of the box).
+At the eruption vent, temperature $T$, velocity $\textbf{v}$, pressure $p$, initial mass fraction of solid portition $n_{g0}$ and mass discharge rate $\dot M$ is given. 
+%The radius of vent is determined from $\rho$, $\dot M$ and $\textbf{v}$.
+Non-slip, adiabatic wall boundary condition is imposed on the wall. The pressure of the surrounding atmosphere is specified on the pressure boundaries. 
+%Except for the pressure, density, velocity, and energy will depend on the solution. We adpot ghost particles to impose these different type of boundary conditions (see figure \ref{fig:Domain_adjusting}). 
 \subsection{Discretized governing equations with SPH}
-There are several review papers \cite{monaghan1992smoothed, monaghan2005smoothed, price2012smoothed, rosswog2009astrophysical, monaghan2012smoothed} which provide a pretty comprehensive descriptions of SPH.  These  may be consulted for additional detail.%We will not cover the basic theory of SPH in this paper.
+There are several review papers \cite{monaghan1992smoothed, monaghan2005smoothed, price2012smoothed, monaghan2012smoothed} which provide a pretty comprehensive descriptions of SPH. These may be consulted for additional detail.%We will not cover the basic theory of SPH in this paper.
 The discretized governing equations with SPH are:
 \begin{equation}
 <\rho_a^a>=\sum m_b w_{ab} (h_a) \label{eq:gov-sph-d1}
@@ -710,10 +707,7 @@ $\rho_a^a$ is density of phase 1 (air).
 $\rho_i^{sg}$ is density of phase 2 (erupted material).
 $\rho=\rho^a + \rho^{sg}$ is density of mixture of phase 1 and phase 2.
 \begin{equation}
-\textbf{v}_{\alpha b}=\textbf{v}_{\alpha}-\textbf{v}_b
-\end{equation}
-\begin{equation}
-\textbf{v}_{\alpha j}=\textbf{v}_{\alpha}-\textbf{v}_j
+\textbf{v}_{\alpha \beta}=\textbf{v}_{\alpha}-\textbf{v}_{\beta}
 \end{equation}
 $w_{ab} (h_a)= w(\textbf{r}_a-\textbf{r}_b,h_a)$ is smoothing kernel.
 %$\bigtriangledown_{\alpha}w_{\alpha j}(h_{\alpha})$-->need double check
@@ -723,7 +717,7 @@ Index $i$, $j$ is for phase 2.
 Index $\alpha$, $\beta$ can be index of either phase 1 or phase 2.
 The position of each particle is updated according to the following equation.
 \begin{align}
-\dfrac{d \textbf{r}_a}{dt} = \textbf{v} \label{eq:gov-update-pos}
+\dfrac{d \textbf{r}_a}{dt} = \textbf{v}_{\alpha} \label{eq:gov-update-pos}
 \end{align}
 Free surface flows are inherently turbulent. We adopt $SPH-\varepsilon$ method developed by Monaghan\cite{monaghan2011turbulence} to capture turbulence in the plume. This will result in a filtered velocity for position updates and additional turbulent terms in momentum and energy equation.
 \subsection{Solver performance}
@@ -762,9 +756,18 @@ The initial domain is $[-4800m,4800m]\times [-4800m,4800m] \times [0m, 6000m]$, 
 %When we request 128 processes, 64 processes will be totally idle at the beginning. As simulation goes, the domain will expand and more and more idle processes will start getting tasks. That's why we still get some speed up when number of process is 128. 3D domain decomposition is able to divide the work load in a more flexible way and achieve better strong scalability.
 %
 %
-For the test problem in this paper, the volcanic plume will finally reach to a region of $[-10km \,\,\, 10km] \times [-10km\,\,\,10km] \times [0km\,\,\,20km]$ after around 300 seconds of eruption. When numerical simulation goes up to 90 seconds, the plume is still within a region of $[-3km\,\,\,3km] \times [-3km\,\,\,3km] \times [0km\,\,\,6km]$. This implies that adjusting of domain can avoid computing large number of uninfluenced air particles, especially for the beginning stage of simulation. Numercial test shows that simulation time of the test problem is reduce to $\frac{1}{4}$ of original simulation time when we adopt the domain adjusting strategy in our code.
-%
-%
+For the test problem in this paper, the volcanic plume will finally reach to a region of $[-10km \,\,\, 10km] \times [-10km\,\,\,10km] \times [0km\,\,\,20km]$ after around 300 seconds of eruption. When numerical simulation goes up to 90 seconds, the plume is still within a region of $[-3km\,\,\,3km] \times [-3km\,\,\,3km] \times [0km\,\,\,6km]$. This implies that adjusting of domain can avoid computing large number of uninfluenced air particles, especially for the beginning stage of simulation. Numercial test shows that simulation time of the test problem is reduce to $\frac{1}{4}$ of original simulation time when we adopt the domain adjusting strategy in our code. 
+A typical simulation result of volcano plume is shown in figure \ref{fig:Plume}. 
+\begin{figure}[!t]
+\centering
+\subfloat[A plume from Sakurajima Volcano eruption\cite{PlumePhoto}]{\includegraphics[width=3.8cm,height=4.5cm]{plume_photo}}
+\label{fig:plume_photo}
+\hfil
+\subfloat[Contour of mass fraction of erupted material at 290 seconds]{\includegraphics[width=3.8cm,height=4.5cm]{Plume_simulation}}
+\label{fig:plume_simulation}
+\caption{The volcano plume}
+\label{fig:Plume}
+\end{figure}
 \section{Conclusion}
 We developed data management strategies for parallel implementation of SPH method using MPI standard to simulate complicated problems, such as JUPE, which requires flexible and fast data retrievalling, adding and deleting. Neighbors searching and domain decomposition is based on background grid which overlaps the domain and keep stationary during simulation. SFC based index scheme, which provides a global numberring methodology which is purely coordinates dependent, is adopted to give each bucket an unique identifier. A time dependent key which is also based on SFC is used as identifier for particle. 
 Hashtables with external link list are adopted for accessing particles and buckets data. Based on weighted particle work load, a dynamic load balance strategy is developed by checking load balance and redecomposing the domain at an optimize interval. The performance of the code was further improved to several times faster by adjusting computational domain according to progress of simulation. 
