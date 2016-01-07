@@ -342,16 +342,17 @@
 % author names and affiliations
 % use a multiple column layout for up to three different
 % affiliations
-\author{\IEEEauthorblockN{Zhixuan Cao, Abani Patra, Matt Jones, ...}
+\author{\IEEEauthorblockN{Zhixuan Cao, Abani Patra}
 \IEEEauthorblockA{Department of Mechanical and Aerospace Engineering\\
  The University at Buffalo\\
  Buffalo, New York 14260\\
 Email: zhixuanc@buffalo.edu, abani@buffalo.edu}
-%\and
-%\IEEEauthorblockN{Homer Simpson}
-%\IEEEauthorblockA{Twentieth Century Fox\\
-%Springfield, USA\\
-%Email: homer@thesimpsons.com}
+\and
+\IEEEauthorblockN{Matt Jones}
+\IEEEauthorblockA{Center for Computational Research\\
+The University at Buffalo\\
+Buffalo, New York 14260\\
+Email: jonesm@buffalo.edu}
 %\and
 %\IEEEauthorblockN{James Kirk\\ and Montgomery Scott}
 %\IEEEauthorblockA{Starfleet Academy\\
@@ -428,44 +429,43 @@ particle distributions, adding and deleting of particles and leverage adaptive b
 
 \section{Introduction}
 % no \IEEEPARstart
-SPH (spherical particle hydrodynamics) is a meshless scheme, initially developed for astrophysical applications by Lucy\cite{lucy1977numerical} and Gingold and Monaghan\cite{gingold1977smoothed}. 
-Subsequently it was extended to large strain solid mechanics and computational fluid mechanics. 
+SPH (smoothed particle hydrodynamics) is a meshless scheme, initially developed for astrophysical applications by Lucy\cite{lucy1977numerical} and Gingold and Monaghan\cite{gingold1977smoothed}. 
+Subsequently it was extended to computational fluid mechanics. 
 A lot of research has appeared  on  parallellization of SPH in the last few years. 
 Goozee\cite{goozee2003distributed} implemented a simple SPH code using MPI, OpenMP and BSP. 
- Wenbo\cite{wenbo2014performance} presented a parallel SPH implementation on multi-core CPUs. 
-  Holmes\cite{holmes2011framework} presented a simulation framework that enables distributed numerical computing in multi-core shared-memory environments. 
+Wenbo\cite{wenbo2014performance} presented a parallel SPH implementation on multi-core CPUs. 
+Holmes\cite{holmes2011framework} presented a simulation framework that enables distributed numerical computing in multi-core shared-memory environments. 
 Dominguez\cite{dominguez2011optimization} presented optimizations for both CPU and GPU parallelization of a SPH method. 
- Ferrari\cite{ferrari2009new} parallelized a 3D SPH code using the message passing interface (MPI) standard, together with a dynamic load balancing strategy to improve the computational efficiency of the scheme. 
+Ferrari\cite{ferrari2009new} parallelized a 3D SPH code using the message passing interface (MPI) standard, together with a dynamic load balancing strategy to improve the computational efficiency of the scheme. 
 Kumar et. al. \cite{kumar2013parallel} implemented a parallel Godunov SPH in simulation of granular flows.
- Crespo\cite{crespo2015dualsphysics} used the GPUs to accelerate DualSPHysics by up to two orders of magnitude compared to the performance of the serial version.\\
+Crespo\cite{crespo2015dualsphysics} used the GPUs to accelerate DualSPHysics by up to two orders of magnitude compared to the performance of the serial version.\\
 However, most implementation of parallel SPH method presented to date are limited to standard SPH and benchmark problems like dam break, or relatively
- simple scenarios like breaking-waves, floodings etc. Work on more complicated problems, such as eruption of volcano plume which is essentially a mult-phase turbulent flow,
-  ejection mixing process accompanied by microphysics phenomena like phase change of water, aggregation, reaction etc. is relatively rare. 
-  Prediction of such  c complicated phenomena with acceptable accuracy at given time window requires resolutions (very high particle counts) that cannot been accomplished without parallel computing. What's more, imposing of some types of boundary conditions (such as realistic wind field, eruption boundary condition) requires dynamically adding and removing of particles during simulation. This requires efficient and more flexible data management scheme. What we need to point out is that the benefit of flexible data management strategies are not only limited to specific implementations of SPH. Actually, flexibility in data management are more critical for several advanced techniques of SPH, such as dynamic particle splitting techniques\cite{vacondio2012accurate, feldman2007dynamic}, which will give greater resolution at the area of interest by splitting one large particle to several smaller ones.
+simple scenarios like breaking-waves, floodings etc. Work on more complicated problems, such as eruption of volcano plume which is essentially a mult-phase turbulent flow,
+ejection mixing process accompanied by microphysics phenomena like phase change of water, aggregation, reaction etc. is relatively rare. 
+Prediction of such complicated phenomena with acceptable accuracy at given time window requires resolutions (very high particle counts) that cannot been accomplished without parallel computing. What's more, imposing of some types of boundary conditions (such as realistic wind field, eruption boundary condition) requires dynamically adding and removing of particles during simulation. This requires efficient and more flexible data management scheme. What we need to point out is that the benefit of flexible data management strategies are not only limited to specific implementations of SPH. Actually, flexibility in data management are more critical for several advanced techniques of SPH, such as dynamic particle splitting techniques\cite{vacondio2012accurate, feldman2007dynamic}, which will give greater resolution at the area of interest by splitting one large particle to several smaller ones.
 In this paper, we implement SPH to simulate a simplified version of complicated volcanic plume: the JPUE, and develop data management schemes for it.\\
 Among existing CPU parallel SPH schemes, most of them focus on neighbors searching algorithm and dynamic load balancing. (eg.\cite{ferrari2009new, crespo2015dualsphysics}). Less attention has been paid to developing of more flexible data management schemes for more complicated problems. 
 Fortunately, efficient and flexible data management strategies for high performance computing have been successfully implemented in mesh based methods (eg. \cite{laszloffy2000simple} for adaptive hp FEM, and \cite{pitman2003computing, patra2005parallel} for FVM). Motivated by techniques developed for mesh based methods, we present a complete framwork for parallelizing SPH program with MPI standard model allowing more flexible and efficient data access in this paper.\\
-Any implementation of SPH code requires efficient searching and updating of neighbors during simulation. Of the many choices possible for this we adopted a background grid which was proposed by Monaghan and Lattanzio\cite{monaghan1985refined} and is quite popular in parallel SPH. The background grid is also used for domain decomposition in SPH. We refer to the elements of background grid, namely  squares for two dimension and cubics for three dimension, as buckets. 
+Any implementation of SPH code requires efficient searching and updating of neighbors during simulation. Of the many choices possible for this we adopted a background grid which was proposed by Monaghan and Lattanzio\cite{monaghan1985refined} and is quite popular in parallel SPH. The background grid is also used for domain decomposition in SPH. We refer to the elements of background grid, namely squares for two dimension and cubics for three dimension, as buckets. 
 %
 %
-As for the actual storage of data representing the physical quantities associated to each particle, different strategies  have been adopted in existing implementations of SPH. 
-In both SPHysics\cite{dominguez2011optimization} and DualSPHysics\cite{crespo2015dualsphysics}, The physical quantities of each particle (position, velocity, density…) are stored in arrays, and the particles (and the arrays with particle data) are reordered following the order of the cells. This has two advantages: 1) access pattern is more regular and more efficient, 2) it is ease to identify the particles that belong to a cell by using a range since the first particle of each cell is known. But adding, deleting and especially accessing of particles are cumbersome.   Ferrari\cite{ferrari2009new} adopted linked lists using pointers so that particles can be deleted or added during the simulation. Storage problems caused by fix-size arrays are thereby also eliminated. We define C++ classes which contains all data of particle and bucket. As for the management of data, we adopt a hash table to store pointers to particles and buckets, which gives us not only flexibility of deleting and adding element, but also quicker access compared with linked list. Instead of using the "nature manner" to number particles, we adopt SFC based index to give each particle and background bucket an unique identifier -- a strategy known to preserve some locality at minimal cost. The SFC based numbering strategy is further extended to include time step information so that particles added at the same position but different time will have different identifiers. 
-%
+As for the actual storage of data representing the physical quantities associated to each particle, different strategies have been adopted in existing implementations of SPH. 
+In both SPHysics\cite{dominguez2011optimization} and DualSPHysics\cite{crespo2015dualsphysics}, The physical quantities of each particle (position, velocity, density…) are stored in arrays, and the particles (and the arrays with particle data) are reordered following the order of the cells. This has two advantages: 1) access pattern is more regular and more efficient, 2) it is ease to identify the particles that belong to a cell by using a range since the first particle of each cell is known. But adding, deleting and especially accessing of particles are cumbersome. Ferrari\cite{ferrari2009new} adopted linked lists using pointers so that particles can be deleted or added during the simulation. Storage problems caused by fix-size arrays are thereby also eliminated. We define C++ classes which contains all data of particle and bucket. As for the management of data, we adopt a hash table to store pointers to particles and buckets, which gives us not only flexibility of deleting and adding element, but also quicker access compared with linked list. Instead of using the "nature manner" to number particles, we adopt SFC based index to give each particle and background bucket an unique identifier -- a strategy known to preserve some locality at minimal cost. The SFC based numbering strategy is further extended to include time step information so that particles added at the same position but different time will have different identifiers. 
 As for domain decomposition, even though more complicated graph-based partition tools\cite{biswas1999experiments} might get higher quality decomposition, they requires much more effort in programming and computation. So we adopt an easy-programming scheme based on SFC \cite{patra1999efficient}.\\
-To the best of the author's knowledge, no implementation of SPH has the feature of adjusting computational domain based on simulation needs. For JPUE simulation, such feature will greatly reduce computational cost by avoiding computing of uninfluenced fluid. This feature is accomplished by adding a scan function to monitor the outermost layer of the domain and turn ghost particles to real particles at the proper time. 
+To the best of the author's knowledge, no implementation of SPH has the feature of adjusting computational domain based on simulation needs. For JPUE simulation, such feature will greatly reduce computational cost by avoiding computing of uninfluenced fluid. This feature is accomplished by adding a scan function to monitor the outermost layer of the domain and turn ghost particles to real particles at proper time. 
 %The computational cost of this additional scan function is low.
 \\
-The data structure, particle and bucket indexing strategies, domain decomposition , dynamic load balancing method and domain adjusting strategies in this paper can be easily adopted by other implementations of any meshfree methods(include SPH). The flexibility of data accessing enables implementing of meshless methods for solving of more complicated problems and using of more advanced techniques.\\
+The data structure, particle and bucket indexing strategies, domain decomposition, dynamic load balancing method and domain adjusting strategies in this paper can be easily adopted by other implementations of any meshfree methods(include SPH). The flexibility of data accessing enables implementing of meshless methods for solving of more complicated problems and using of more advanced techniques.\\
 \section{Data Structure and Load Balance}
 \begin{figure}[!t]
 \centering
 \includegraphics[scale=0.34]{Work_flow}
-\caption{Basic work flow for SPH}
+\caption{Basic work flow for SPH code}
 \label{fig:Work_flow}
 \end{figure}
-SPH is a meshfree, Lagrangian method. The domain is discretized by particles and the position of each particle is updated at every time step. The physical laws (such as conservation laws of mass, momentum and energy) written in the form of partial differential equations need to be transformed into the Lagrangian particle formalism of SPH. Using a kernel function that provides the weighted estimate of the field variables in the neighborhood of a discrete point (particle), the integral equations are evaluated as sums over neighbor particles. Only particles located within support of kernel function will interact. Thus, physical properties (position, density, velocity, internal energy, pressure) are updated based on its neighbors. So a neighbor search needs to be carried out before updating of physical properties. We use buckets which contain all particles associated with a sub-domain 
- and are kept fixed in time during the entire simulation, to reduce search cost (since search can now be restricted to only neighboring domains).
-  Domain decomposition will be based on an SFC going through centroids of all buckets. A basic work flow of our SPH code is shown in figure \ref{fig:Work_flow}.\\
+SPH is a meshfree, Lagrangian method. The domain is discretized by particles and the position of each particle is updated at every time step. The physical laws (such as conservation laws of mass, momentum and energy) written in the form of partial differential equations need to be transformed into the Lagrangian particle formalism of SPH. Using a kernel function that provides the weighted estimate of the field variables in the neighborhood of a discrete point (particle), the integral equations are evaluated as sums over neighbor particles. Only particles located within support of kernel function will interact. Thus, physical properties (position, density, velocity, internal energy, pressure) are updated based on its neighbors. So a neighbor searching needs to be carried out before updating of physical properties. We use buckets which contain all particles associated with a sub-domain 
+and are kept fixed in time during the entire simulation, to reduce search cost (since search can now be restricted to only neighboring domains).
+Domain decomposition will be based on an SFC going through centroids of all buckets. A basic work flow of our SPH code is shown in figure \ref{fig:Work_flow}.\\
 Particles need to be added and(or) removed during simulation of JPUE problems. Wall boundary conditions in SPH can be imposed either by adding a force term or using ghost particles. We adopt the latter one in our simulation. As our computational domain will be adjusted during simulation, wall ghost particles need to be added during simulation. New particles also need to be added for the eruption boundary condition. 
 We will describe in this section strategies which satisfy these requirements.
 \subsection{SFC based indexing}
@@ -489,7 +489,7 @@ The SFC \cite{sagan2012space} maps n-dimentional space to a one dimentional sequ
 \label{fig:SFC_domain_decomposition}
 \end{figure*}
 Scheme for constructing the map $h_n$ can be found in \cite{patra1995problem}. These keys denote a simple addressing/ordering scheme for the data and computations, i.e., a simple global index space for all the objects.\\
-SFC-based indexing scheme can guarantee uniqueness of particle identifier only in simple scenarios when particles are added once while setting up initial condition. In some situations, new particles need to be added while simulation. For example, new particles need to be added at the bottom of the eject vent for JPUE simulation. To distinguish particles added at the ``same place" (the small area, all points within which will be mapped to the same $k$.) at different time steps, we extend the SFC-based key to time-dependent SFC based key by including date of birth of particles into the key. The time-dependent SFC based key can be written as: $[k,t]$, where $t$ is the time step. The map $h_n$ will become:
+SFC-based indexing scheme can guarantee uniqueness of particle identifier only in simple scenarios when particles are added once while setting up initial condition. In some situations, new particles need to be added while simulation. For example, new particles need to be added at the bottom of the eject vent for JPUE simulation. To distinguish particles added at the "same place" (the small area, all points within which will be mapped to the same $k$.) at different time steps, we extend the SFC-based key to time-dependent SFC based key by including date of birth of particles into the key. The time-dependent SFC based key can be written as: $[k,t]$, where $t$ is the time step. The map $h_n$ will become:
 \begin{equation}
 h_n: [0,1]^n \times \textbf{T} \rightarrow [0,1] \times \textbf{N}
 \end{equation}
@@ -503,7 +503,7 @@ Several features of such indexing scheme are suitable for SPH:
 \item This type of key effectively generates a global address space. Globality of key and conservation of locality make it easy to partition the sorted key sequence and obtain a decompositiion of the problem.
 \end{itemize}
 We need to emphasize here is that in theory motion of particles will destroy locality established based on initial coordinates of particles. However, as particles are moving fairly regularly in a JPUE, the locality of most of particles is largely conserved during simulation. We will revisit this question for more chaotic flows and 
- design a re-numbering method which is computationally cheap, to restore the locality.
+design a re-numbering method which is computationally cheap, to restore the locality.
 \subsection{Data structure}
 \subsubsection{Particle and bucket}
 The most basic data structure of SPH are particle, for problem description, and bucket, for neighbors searches and domain decomposition. Both are defined as classes in C++. Information that is contained in particle class can be categorized into six categories: ID(the key), affiliate(rank of the process that the particle belongs to), primitive variables (variables show up as unknowns in governing equations, e.g. density, velocity, energy), secondary variables (properties that can be computed from primitive variables, they are stored to avoid repeated computations eg. pressure, temperature), flags (indicators, such as indicator for ghost particle and real particles, indicator for particles of different phases  ) and neighbor information (it is a vector of particle keys in our application). Similarly,  Information that is contained in  a bucket class can also be categorized into different categories: ID(the key), affiliate(rank of the process that the bucket belong to), domain information (maximum and minimum coordinates, boundary information), flags (indicators, such as indicator for guest and non-guest, indicator for active and inactive), neighbor information (keys of 27 neighbor buckets for three dimension and keys of 9 neighbor buckets for two dimension including its own key) and owned particles. Objects defined based on these two classes are then accessed through hash tables.
@@ -567,16 +567,16 @@ Particles used in the test problem can be categorized into four types based on t
   \label{tab:Computational_cost_particles}
   \begin{tabular}{|c|r|r|r|r|r|r|r|}
     \hline
-    Particle type & NS & UPME & UPD & UPP &VF &WBC &Total\\
+    Particles & NS & UPME & UPD & UPP &VF &WBC &Total\\
     \hline
     %\hhline{|=|=|=|=|=|=|=|=|}
     Real & Yes & Yes & Yes & Yes & Yes & No & 2.00\\
     \hline
-    wall ghost & No & No & No & No & No & Yes &0.75\\
+    wall & No & No & No & No & No & Yes &0.75\\
     \hline
-    eruption ghost & No & No & No & Yes & No & No & 0.02\\
+    eruption & No & No & No & Yes & No & No & 0.02\\
     \hline
-    pressure ghost & No & No & No & No & No & No & 0.00\\
+    pressure & No & No & No & No & No & No & 0.00\\
     \hline
   \end{tabular}
 \end{table}
@@ -754,10 +754,10 @@ Free surface flows are inherently turbulent. We adopt $SPH-\varepsilon$ method d
 \caption{Weak scalability test results}
 \label{fig:weak_loglog}
 \end{figure}
-Experiments have been carried out on the computational cluster of Center for Computational Research (CCR) at Buffalo. Two types of processors -- 8 core L5630 running at 2.13GHz clock rate with 3GB memory per core on  and 12 core E5645 running at 2.40GHz clock rate with 4GB memory per core. Each node comprised of two sockets with two of these processors. Memory and level 3 cache are shared on each node.
+Experiments have been carried out on the computational cluster of Center for Computational Research (CCR) at Buffalo. Two types of processors -- 8 core L5630 running at 2.13GHz clock rate with 3GB memory per core on a Mellanox network and 12 core E5645 running at 2.40GHz clock rate with 4GB memory per core on a Q-Logic network. Each node comprised of two sockets with two of these processors. Memory and level 3 cache are shared on each node.
 An important caveat in interpreting these results is that they were obtained in settings where the processors were obtained under normal scheduling (hence readily available) wherein the nodes may be shared with other users. Thus our results may suffer from contention for memory, CPU-memory bandwidth and network access. As of this writing, we are waiting for exclusive access which will undoubtedly provide better results. On the other hand, these results are representative of what will be available during production use.
 %
-The initial domain is $[-4800m,4800m]\times [-4800m,4800m] \times [0m, 6000m]$, with smoothing length (we set initial intervals between particles equal to smoothing length) equals to 200m and 100m respectively for test case1 and test case2, respectively. The computational work load of test case 2 is 8 times of that of the test case 1. The simulations run for 20s physical time.  Wall clock time and speed up are shown in figure \ref{fig:2cases_time} and \ref{fig:2cases_efficiency}. Linear speed up is observed when number of processes is smaller than 16. Test case2 shows better speed up than test case1 which implies that the overhead of strong scalability can be increased by increasing total amount of work load. We also compared the performance of 2D domain decomposition and 3D domain decomposition. As shown by figure \ref{fig:2D_vs_3D_efficiency}, 2D domain decomposition shows a little bit better speed up than 3D domain decomposition for 32 processes. This can be explained by the fact that 2D domain decomposition can get more regular subdomain and as a results, need less communication. When number of processes increase, it becomes harder for 2D decomposition to balance workload, that is why 3D domain decomposition has better speed up for processes number equals to 64 and 128. The weak scalability test is conducted with the same initial domain and various smoothing length. Each simulation runs for 400 loops. The average number of real particles of each process keep constant at $25900$. As shown in figure \ref{fig:weak_loglog}, simulation time are almost constant with some minor fluctutations around the average value. These fluctuations are due to sharing nodes with other users.  
+The initial domain is $[-4800m,4800m]\times [-4800m,4800m] \times [0m, 6000m]$, with smoothing length (we set initial intervals between particles equal to smoothing length) equals to 200m and 100m respectively for test case1 and test case2, respectively. The computational work load of test case 2 is 8 times of that of the test case 1. The simulations run for 20s physical time.  Wall clock time and speed up are shown in figure \ref{fig:2cases_time} and \ref{fig:2cases_efficiency}. Linear speed up is observed when number of processes is smaller than 16. Test case2 shows better speed up than test case1 which implies that the overhead of strong scalability can be increased by increasing total amount of work load. We also compared the performance of 2D domain decomposition and 3D domain decomposition. As shown by figure \ref{fig:2D_vs_3D_efficiency}, 2D domain decomposition shows a little bit better speed up than 3D domain decomposition for 32 processes. This can be explained by the fact that 2D domain decomposition can get more regular subdomain and as a results, need less communication. When number of processes increase, it becomes harder for 2D decomposition to balance workload, that is why 3D domain decomposition has better speed up for processes number equals to 64 and 128. The weak scalability test is conducted with the same initial domain and various smoothing length. Each simulation runs for 400 loops. The average number of real particles of each process keep constant at $25900$. As shown in figure \ref{fig:weak_loglog}, simulation time are almost constant with some minor fluctutations around the average value. These fluctuations are due to sharing nodes with other users. In addition, difference in simulation time for different processors are obvious.
 %That can be explained by the fact that the total number of footprint buckets in x-y plane is 64 in the test case.
 %When we request 128 processes, 64 processes will be totally idle at the beginning. As simulation goes, the domain will expand and more and more idle processes will start getting tasks. That's why we still get some speed up when number of process is 128. 3D domain decomposition is able to divide the work load in a more flexible way and achieve better strong scalability.
 %
