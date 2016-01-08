@@ -346,7 +346,7 @@
 Email: zhixuanc@buffalo.edu, \\ abani@buffalo.edu}
 \and
 \IEEEauthorblockN{Matthew Jones, Jaroslaw Zola}
-\IEEEauthorblockA{Center for Computational Research, \\
+\IEEEauthorblockA{Center for Computational Research,
 Department of CSE \\%Computer Science and Engineering
 The University at Buffalo\\
 Buffalo, New York 14260\\
@@ -402,7 +402,7 @@ Email: jonesm@buffalo.edu, \\ jzola@buffalo.edu}
 \begin{abstract}
 This paper presents a parallel implementation of smoothed particle hydrodynamics (SPH) method using the message passing interface (MPI) standard to simulate a turbulent jet or plume which is ejected from a nozzle into a uniform environment(JPUE). Background grid is used to reduce neighbors searching cost and to decompose (redecompose) the domain. Space Filing Curve(SFC) based index is adopted to assign an unique identifier to each background grid. As simulation of JUPE requires adding of new particles during simulation, time-dependent SFC based indexes are assigned to particles to guarantee uniqueness of identifiers.  
 %to distinguish particles added at the same position but different simulation time step. 
-Both particle and background grid are managed by hashtables which ensure quick and flexible accessing, adding and deleting of element. %Additional link list attached to the hashtable is used to handle hash conflicts.
+Both particle and background grid are managed by hash tables which ensure quick and flexible accessing, adding and deleting of element. %Additional link list attached to the hashtable is used to handle hash conflicts.
 A SFC based three dimensional domain decomposition and a dynamic load balancing strategy are implemented to ensure good load balance. In addition, computational domain is adjusted during simulation to reduce computational cost. 
 Numerical tests show that our code has acceptable strong scalability and good weak scalability.
 These strategies can be further applied to many other implementations of meshfree methods, especially those implementations that require irregular
@@ -449,7 +449,7 @@ Any implementation of SPH code requires efficient searching and updating of neig
 %
 %
 As for the actual storage of data representing the physical quantities associated to each particle, different strategies have been adopted in existing implementations of SPH. 
-In both SPHysics and DualSPHysics\cite{crespo2015dualsphysics}, The physical quantities of each particle (position, velocity, density…) are stored in arrays, and the particles (and the arrays with particle data) are reordered following the order of the cells. This has two advantages: 1) access pattern is more regular and more efficient, 2) it is ease to identify the particles that belong to a cell by using a range since the first particle of each cell is known. But adding, deleting and especially accessing of particles are cumbersome. Ferrari\cite{ferrari2009new} adopted linked lists using pointers so that particles can be deleted or added during the simulation. Storage problems caused by fix-size arrays are thereby also eliminated. We define C++ classes which contains all data of particle and bucket. As for the management of data, we adopt hash tables to store pointers to particles and buckets, which give us not only flexibility of deleting and adding element, but also quicker access compared with linked list. Instead of using the "nature manner" to number particles, we adopt SFC based index to give each particle and background bucket an unique identifier -- a strategy known to preserve some locality at minimal cost. The SFC based numbering strategy is further extended to include time step information so that particles added at the same position but different time will have different identifiers. 
+In both SPHysics and DualSPHysics\cite{crespo2015dualsphysics}, the physical quantities of each particle (position, velocity, density…) are stored in arrays, and the particles (and the arrays with particle data) are reordered following the order of the cells. This has two advantages: 1) access pattern is more regular and more efficient, 2) it is ease to identify the particles that belong to a cell by using a range since the first particle of each cell is known. But adding, deleting and especially accessing of particles are cumbersome. Ferrari\cite{ferrari2009new} adopted linked lists using pointers so that particles can be deleted or added during the simulation. Storage problems caused by fix-size arrays are thereby also eliminated. We define C++ classes which contains all data of particle and bucket. As for the management of data, we adopt hash tables to store pointers to particles and buckets, which give us not only flexibility of deleting and adding element, but also quicker access compared with linked list. Instead of using the "nature manner" to number particles, we adopt SFC based index to give each particle and background bucket an unique identifier -- a strategy known to preserve some locality at minimal cost. The SFC based numbering strategy is further extended to include time step information so that particles added at the same position but different time will have different identifiers. 
 As for domain decomposition, even though more complicated graph-based partition tools\cite{biswas1999experiments} might get higher quality decomposition, they requires much more effort in programming and computation. So we adopt an easy-programming scheme based on SFC \cite{patra1999efficient}.\\
 To the best of the author's knowledge, no implementation of SPH has the feature of adjusting computational domain based on simulation needs. For JPUE simulation, such feature will greatly reduce computational cost by avoiding computing of uninfluenced fluid. This feature is accomplished by adding a scan function to monitor the outermost layer of the domain and turn ghost particles to real particles at proper time.\\
 %The computational cost of this additional scan function is low.
@@ -491,7 +491,7 @@ SFC-based indexing scheme can guarantee uniqueness of particle identifier only i
 \begin{equation}
 h_n: [0,1]^n \times \textbf{T} \rightarrow [0,1] \times \textbf{N}
 \end{equation}
-Where $\textbf{T} \subset [0,\infty)$ is the time step dimension, $\textbf{N}=\lbrace 0, 1, 2, 3...\rbrace$.
+Where $\textbf{T} \subset [0,\infty)$ is the time dimension, $\textbf{N}=\lbrace 0, 1, 2, 3...\rbrace$.
 To guarantee locality, sorting of particle keys is majorly based on $k$, that is to say, particle with smaller $k$ always comes before particles with larger $k$. For these particles have the same $k$, ordering of them will depend on $t$. Figure \ref{fig:SFC_particles_buckets} shows SFC ordering of buckets and particles in buckets. 
 Several features of such indexing scheme are suitable for SPH:
 \begin{itemize}
@@ -610,10 +610,10 @@ This domain adjusting process is shown in figure \ref{fig:Domain_adjusting}.
 The work flow with domain adjusting is in figure \ref{fig:Work_flow_adjust}.
 \begin{figure*}[!t]
 \centering
-\subfloat[Computational domain at $t=t0$]{\includegraphics[scale=0.23]{Involved_initial}}
+\subfloat[Computational domain at $t=t0$]{\includegraphics[scale=0.22]{Involved_initial}}
 \label{fig:Involved_initial}
 \hfil
-\subfloat[Computational domain at $t=t0 + \Delta t$]{\includegraphics[scale = 0.23]{Involved_domain_adjusting}}
+\subfloat[Computational domain at $t=t0 + \Delta t$]{\includegraphics[scale = 0.22]{Involved_domain_adjusting}}
 \label{fig:Involved_domain_adjusting}
 \caption{ Adjusting the domain based on involved-flag of particles}
 \label{fig:Domain_adjusting}
@@ -654,7 +654,7 @@ Where
 \gamma_m = R_m/C_{vm} + 1 \label{eq:gov-gm}
 \end{equation}
 \begin{equation}
-Rm = n_gR_g + n_aR_a  \label{eq:gov-Rm}
+R_m = n_gR_g + n_aR_a  \label{eq:gov-Rm}
 \end{equation}
 \begin{equation}
 C_{vm} = n_s C_{vs} + n_g C_{vg} + n_a C_{va} \label{eq:gov-Cvm}
@@ -672,9 +672,9 @@ Where, $C_v$ is specific heat with constant volume, $n$ is mass fraction, $R$ is
 $m$ represents mixture of ejected material and air, $s$ is solid portion in ejected material, $g$ is gas portion in the ejected material and $a$ is air.\\
 In current model the initial domain is a 3D box. 
 %The boundaries are categorized into eruption vent (a circle area at the center of the bottom), wall boundary (box bottom), pressure boundary (Other faces of the box).
-At the eruption vent, temperature $T$, velocity $\textbf{v}$, pressure $p$, initial mass fraction of solid portition $n_{g0}$ and mass discharge rate $\dot M$ is given. 
+At the eruption vent, temperature $T$, velocity $\textbf{v}$, pressure $p$, initial mass fraction of gas portition $n_{g0}$ and mass discharge rate $\dot M$ is given. 
 %The radius of vent is determined from $\rho$, $\dot M$ and $\textbf{v}$.
-Non-slip, adiabatic wall boundary condition is imposed on the wall. The pressure of the surrounding atmosphere is specified on the pressure boundaries. 
+Non-slip, adiabatic wall boundary condition is imposed on the wall. The pressure of the surrounding atmosphere is specified, forming pressure boundary conditions. 
 %Except for the pressure, density, velocity, and energy will depend on the solution. We adpot ghost particles to impose these different type of boundary conditions (see figure \ref{fig:Domain_adjusting}). 
 \subsection{Discretized governing equations with SPH}
 There are several review papers \cite{monaghan1992smoothed, monaghan2005smoothed, price2012smoothed, monaghan2012smoothed} which provide a pretty comprehensive descriptions of SPH. These may be consulted for additional detail.%We will not cover the basic theory of SPH in this paper.
@@ -719,7 +719,7 @@ The position of each particle is updated according to the following equation.
 \begin{align}
 \dfrac{d \textbf{r}_a}{dt} = \textbf{v}_{\alpha} \label{eq:gov-update-pos}
 \end{align}
-Free surface flows are inherently turbulent. We adopt $SPH-\varepsilon$ method developed by Monaghan\cite{monaghan2011turbulence} to capture turbulence in the plume. This will result in a filtered velocity for position updates and additional turbulent terms in momentum and energy equation.
+Free surface flows are inherently turbulent. We adopt $SPH-\varepsilon$ method developed by Monaghan\cite{monaghan2011turbulence} to capture turbulence in the plume. This will result in a filtered velocity for position updating and additional turbulent terms in momentum and energy equation.
 \subsection{Solver performance}
 \begin{figure}[!t]
 \centering
@@ -748,7 +748,7 @@ Free surface flows are inherently turbulent. We adopt $SPH-\varepsilon$ method d
 \caption{Weak scalability test results}
 \label{fig:weak_loglog}
 \end{figure}
-Experiments have been carried out on the computational cluster of Center for Computational Research (CCR) at Buffalo. Two types of processors -- 8 core L5630 running at 2.13GHz clock rate with 3GB memory per core on a Mellanox network and 12 core E5645 running at 2.40GHz clock rate with 4GB memory per core on a Q-Logic network. Each node comprised of two sockets with several of these processors. Memory and level 3 cache are shared on each node.
+Experiments have been carried out on the computational cluster of Center for Computational Research (CCR) at Buffalo. Two types of processors -- 8 core L5520/L5630 running at 2.27/2.13GHz clock rate with 3GB memory per core on a Mellanox Infiniband network and 12 core E5645 running at 2.40GHz clock rate with 4GB memory per core on a Q-Logic Infiniband network. Each node comprised of two sockets with several of these processors. Memory and level 3 cache are shared on each node.
 An important caveat in interpreting these results is that they were obtained in settings where the processors were obtained under normal scheduling (hence readily available) wherein the nodes may be shared with other users. Thus our results may suffer from contention for memory, CPU-memory bandwidth and network access. As of this writing, we are waiting for exclusive access which will undoubtedly provide better results. On the other hand, these results are representative of what will be available during production use.
 %
 The initial domain is $[-4800m,4800m]\times [-4800m,4800m] \times [0m, 6000m]$, with smoothing length (we set initial intervals between particles equal to smoothing length) equals to 200m and 100m respectively for test case1 and test case2, respectively. The computational work load of test case 2 is 8 times of that of the test case 1. The simulations run for 20s physical time.  Wall clock time and speed up are shown in figure \ref{fig:2cases_time} and \ref{fig:2cases_efficiency}. Linear speed up is observed when number of processes is smaller than 16. Test case2 shows better speed up than test case1 which implies that the overhead of strong scalability can be increased by increasing total amount of work load. We also compared the performance of 2D domain decomposition and 3D domain decomposition. As shown by figure \ref{fig:2D_vs_3D_efficiency}, 2D domain decomposition shows a little bit better speed up than 3D domain decomposition for 32 processes. This can be explained by the fact that 2D domain decomposition can get more regular subdomain and as a results, need less communication. When number of processes increase, it becomes harder for 2D decomposition to balance workload, that is why 3D domain decomposition has better speed up for processes number equals to 64 and 128. The weak scalability test is conducted with the same initial domain and various smoothing length. Each simulation runs for 400 loops. The average number of real particles of each process keep constant at $25900$. As shown in figure \ref{fig:weak_loglog}, simulation time are almost constant with some minor fluctutations around the average value. These fluctuations are due to sharing nodes with other users. In addition, difference in simulation time for different processors are obvious.
@@ -757,20 +757,20 @@ The initial domain is $[-4800m,4800m]\times [-4800m,4800m] \times [0m, 6000m]$, 
 %
 %
 For the test problem in this paper, the volcanic plume will finally reach to a region of $[-10km \,\,\, 10km] \times [-10km\,\,\,10km] \times [0km\,\,\,20km]$ after around 300 seconds of eruption. When numerical simulation goes up to 90 seconds, the plume is still within a region of $[-3km\,\,\,3km] \times [-3km\,\,\,3km] \times [0km\,\,\,6km]$. This implies that adjusting of domain can avoid computing large number of uninfluenced air particles, especially for the beginning stage of simulation. Numercial test shows that simulation time of the test problem is reduce to $\frac{1}{4}$ of original simulation time when we adopt the domain adjusting strategy in our code. 
-A typical simulation result of volcano plume is shown in figure \ref{fig:Plume}. 
+A typical simulation result of volcano plume is shown in figure \ref{fig:Plume}. Input parameters for this simulation are exactly the same as run P1 in reference \cite{suzuki2005numerical}.
 \begin{figure}[!t]
 \centering
 \subfloat[A plume from Sakurajima Volcano eruption\cite{PlumePhoto}]{\includegraphics[width=3.8cm,height=4.4cm]{plume_photo}}
 \label{fig:plume_photo}
 \hfil
-\subfloat[Contour of mass fraction of erupted material at 290 seconds]{\includegraphics[width=3.8cm,height=4.4cm]{Plume_simulation}}
+\subfloat[Simulation results: mass fraction of erupted material at 290 seconds]{\includegraphics[width=3.8cm,height=4.4cm]{Plume_simulation}}
 \label{fig:plume_simulation}
 \caption{The volcano plume}
 \label{fig:Plume}
 \end{figure}
 \section{Conclusion}
 We developed data management strategies for parallel implementation of SPH method using MPI standard to simulate complicated problems, such as JUPE, which requires flexible and fast data retrievalling, adding and deleting. Neighbors searching and domain decomposition is based on background grid which overlaps the domain and keep stationary during simulation. SFC based index scheme, which provides a global numberring methodology which is purely coordinates dependent, is adopted to give each bucket an unique identifier. A time dependent key which is also based on SFC is used as identifier for particle. 
-Hashtables with external link list are adopted for accessing particles and buckets data. Based on weighted particle work load, a dynamic load balance strategy is developed by checking load balance and redecomposing the domain at an optimized interval. The performance of the code was further improved to several times faster by adjusting computational domain according to progress of simulation. 
+Hash tables with external link list are adopted for accessing particles and buckets data. Based on weighted particle work load, a dynamic load balance strategy is developed by checking load balance and redecomposing the domain at an optimized interval. The performance of the code was further improved to several times faster by adjusting computational domain according to progress of simulation. 
 Scalability tests on our code shew acceptable strong scalability and good weak scalability. It was also demonstrated that 3D domain decomposition provided better strong scalability than 2D domain decomposition when number of processes is larger.
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  7 JAN 2016 23:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  8 JAN 2016 13:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -333,19 +333,19 @@ e
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 398.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 396.
 
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 398.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 396.
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ¦ in font ptmr7t!
 
-Underfull \hbox (badness 2856) in paragraph at lines 431--457
+Underfull \hbox (badness 2856) in paragraph at lines 429--455
 \OT1/ptm/m/n/10 However, most im-ple-men-ta-tions of par-al-lel SPH
  []
 
@@ -356,10 +356,10 @@ Underfull \hbox (badness 2856) in paragraph at lines 431--457
 <Work_flow.jpg, id=9, 721.69624pt x 910.40125pt>
 File: Work_flow.jpg Graphic file (type jpg)
  <use Work_flow.jpg>
-Package pdftex.def Info: Work_flow.jpg used on input line 460.
+Package pdftex.def Info: Work_flow.jpg used on input line 458.
 (pdftex.def)             Requested size: 238.16049pt x 300.43333pt.
 
-Overfull \hbox (16.83362pt too wide) in paragraph at lines 460--461
+Overfull \hbox (16.83362pt too wide) in paragraph at lines 458--459
  [][] 
  []
 
@@ -367,7 +367,7 @@ Overfull \hbox (16.83362pt too wide) in paragraph at lines 460--461
 File: SFC_particles_buckets.jpg Graphic file (type jpg)
 
 <use SFC_particles_buckets.jpg>
-Package pdftex.def Info: SFC_particles_buckets.jpg used on input line 481.
+Package pdftex.def Info: SFC_particles_buckets.jpg used on input line 479.
 (pdftex.def)             Requested size: 144.53375pt x 108.40031pt.
 
 <SFC_particles_buckets_partition.jpg, id=14, 963.6pt x 722.7pt>
@@ -375,7 +375,7 @@ File: SFC_particles_buckets_partition.jpg Graphic file (type jpg)
 
 <use SFC_particles_buckets_partition.jpg>
 Package pdftex.def Info: SFC_particles_buckets_partition.jpg used on input line
- 484.
+ 482.
 (pdftex.def)             Requested size: 154.17915pt x 115.63435pt.
  [3 <./Work_flow.jpg>] [4 <./SFC_particles_buckets.jpg> <./SFC_particles_bucket
 s_partition.jpg>]
@@ -383,17 +383,17 @@ s_partition.jpg>]
 File: Particle_adding_with_link.jpg Graphic file (type jpg)
 
 <use Particle_adding_with_link.jpg>
-Package pdftex.def Info: Particle_adding_with_link.jpg used on input line 521.
+Package pdftex.def Info: Particle_adding_with_link.jpg used on input line 519.
 (pdftex.def)             Requested size: 245.7221pt x 184.29156pt.
 
-Overfull \hbox (24.39523pt too wide) in paragraph at lines 521--522
+Overfull \hbox (24.39523pt too wide) in paragraph at lines 519--520
  [][] 
  []
 
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 522.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 520.
 
-Overfull \hbox (15.58391pt too wide) in paragraph at lines 566--580
+Overfull \hbox (15.58391pt too wide) in paragraph at lines 564--578
  [][] 
  []
 
@@ -402,27 +402,27 @@ Overfull \hbox (15.58391pt too wide) in paragraph at lines 566--580
 File: Work_flow_adjust.jpg Graphic file (type jpg)
 
 <use Work_flow_adjust.jpg>
-Package pdftex.def Info: Work_flow_adjust.jpg used on input line 593.
+Package pdftex.def Info: Work_flow_adjust.jpg used on input line 591.
 (pdftex.def)             Requested size: 230.94751pt x 291.33435pt.
 
-Overfull \hbox (9.62064pt too wide) in paragraph at lines 593--594
+Overfull \hbox (9.62064pt too wide) in paragraph at lines 591--592
  [][] 
  []
 
 <Involved_initial.jpg, id=34, 963.6pt x 722.7pt>
 File: Involved_initial.jpg Graphic file (type jpg)
  <use Involved_initial.jpg>
-Package pdftex.def Info: Involved_initial.jpg used on input line 613.
-(pdftex.def)             Requested size: 221.62334pt x 166.2175pt.
+Package pdftex.def Info: Involved_initial.jpg used on input line 611.
+(pdftex.def)             Requested size: 211.99266pt x 158.99449pt.
 
 <Involved_domain_adjusting.jpg, id=35, 963.6pt x 722.7pt>
 File: Involved_domain_adjusting.jpg Graphic file (type jpg)
 
 <use Involved_domain_adjusting.jpg>
-Package pdftex.def Info: Involved_domain_adjusting.jpg used on input line 616.
-(pdftex.def)             Requested size: 221.62334pt x 166.2175pt.
+Package pdftex.def Info: Involved_domain_adjusting.jpg used on input line 614.
+(pdftex.def)             Requested size: 211.99266pt x 158.99449pt.
 
-Underfull \hbox (badness 3058) in paragraph at lines 598--621
+Underfull \hbox (badness 3058) in paragraph at lines 596--619
 \OT1/ptm/m/n/10 the par-ti-cle class. Par-ti-cles are cat-e-go-rized into
  []
 
@@ -430,10 +430,10 @@ Underfull \hbox (badness 3058) in paragraph at lines 598--621
 <2cases_time.jpg, id=45, 729.72626pt x 421.575pt>
 File: 2cases_time.jpg Graphic file (type jpg)
  <use 2cases_time.jpg>
-Package pdftex.def Info: 2cases_time.jpg used on input line 726.
+Package pdftex.def Info: 2cases_time.jpg used on input line 724.
 (pdftex.def)             Requested size: 240.81041pt x 139.12018pt.
 
-Overfull \hbox (19.48354pt too wide) in paragraph at lines 726--727
+Overfull \hbox (19.48354pt too wide) in paragraph at lines 724--725
  [][] 
  []
 
@@ -441,10 +441,10 @@ Overfull \hbox (19.48354pt too wide) in paragraph at lines 726--727
 File: 2cases_efficiency.jpg Graphic file (type jpg)
 
 <use 2cases_efficiency.jpg>
-Package pdftex.def Info: 2cases_efficiency.jpg used on input line 733.
+Package pdftex.def Info: 2cases_efficiency.jpg used on input line 731.
 (pdftex.def)             Requested size: 245.77898pt x 139.12018pt.
 
-Overfull \hbox (24.4521pt too wide) in paragraph at lines 733--734
+Overfull \hbox (24.4521pt too wide) in paragraph at lines 731--732
  [][] 
  []
 
@@ -452,39 +452,43 @@ Overfull \hbox (24.4521pt too wide) in paragraph at lines 733--734
 File: 2D_vs_3D_efficiency.jpg Graphic file (type jpg)
 
 <use 2D_vs_3D_efficiency.jpg>
-Package pdftex.def Info: 2D_vs_3D_efficiency.jpg used on input line 740.
+Package pdftex.def Info: 2D_vs_3D_efficiency.jpg used on input line 738.
 (pdftex.def)             Requested size: 249.75385pt x 139.12018pt.
 
-Overfull \hbox (28.42697pt too wide) in paragraph at lines 740--741
+Overfull \hbox (28.42697pt too wide) in paragraph at lines 738--739
  [][] 
  []
 
-<weak_loglog.jpg, id=48, 679.53876pt x 421.575pt>
+<weak_loglog.jpg, id=48, 765.86125pt x 421.575pt>
 File: weak_loglog.jpg Graphic file (type jpg)
  <use weak_loglog.jpg>
-Package pdftex.def Info: weak_loglog.jpg used on input line 747.
-(pdftex.def)             Requested size: 237.84213pt x 147.55345pt.
+Package pdftex.def Info: weak_loglog.jpg used on input line 745.
+(pdftex.def)             Requested size: 268.05545pt x 147.55345pt.
 
-Overfull \hbox (16.51526pt too wide) in paragraph at lines 747--748
+Overfull \hbox (46.72858pt too wide) in paragraph at lines 745--746
  [][] 
  []
 
 <plume_photo.jpg, id=49, 305.14pt x 468.75125pt>
 File: plume_photo.jpg Graphic file (type jpg)
  <use plume_photo.jpg>
-Package pdftex.def Info: plume_photo.jpg used on input line 763.
+Package pdftex.def Info: plume_photo.jpg used on input line 761.
 (pdftex.def)             Requested size: 108.11826pt x 125.19122pt.
 
 <Plume_simulation.jpg, id=50, 680.5425pt x 791.95876pt>
 File: Plume_simulation.jpg Graphic file (type jpg)
 
 <use Plume_simulation.jpg>
-Package pdftex.def Info: Plume_simulation.jpg used on input line 766.
+Package pdftex.def Info: Plume_simulation.jpg used on input line 764.
 (pdftex.def)             Requested size: 108.12059pt x 125.18127pt.
- [8 <./Involved_initial.jpg> <./Involved_domain_adjusting.jpg> <./2cases_time.j
-pg> <./2cases_efficiency.jpg> <./2D_vs_3D_efficiency.jpg>] [9 <./weak_loglog.jp
-g> <./plume_photo.jpg> <./Plume_simulation.jpg>]
-(./Paper for submission.bbl
+
+Underfull \hbox (badness 1360) in paragraph at lines 764--764
+[]\OT1/phv/m/n/8 (b) |Sim-u-la-tion re-sults: mass
+ []
+
+[8 <./Involved_initial.jpg> <./Involved_domain_adjusting.jpg> <./2cases_time.jp
+g> <./2cases_efficiency.jpg> <./2D_vs_3D_efficiency.jpg>] [9 <./weak_loglog.jpg
+> <./plume_photo.jpg> <./Plume_simulation.jpg>] (./Paper for submission.bbl
 Underfull \hbox (badness 1596) in paragraph at lines 67--72
 \OT1/ptm/m/n/9 Gesteira, S. Long-shaw, R. Canelas, R. Va-con-dio,
  []
@@ -522,7 +526,7 @@ Before submitting the final camera ready copy, remember to:
 Here is how much of TeX's memory you used:
  4134 strings out of 493117
  64767 string characters out of 6135433
- 138015 words of memory out of 5000000
+ 139015 words of memory out of 5000000
  7514 multiletter control sequences out of 15000+600000
  49791 words of font info for 92 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
@@ -542,7 +546,7 @@ r/local/texlive/2014/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local
 /texlive/2014/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2
 014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2014/texmf-
 dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on "Paper for submission.pdf" (10 pages, 1828943 bytes).
+Output written on "Paper for submission.pdf" (10 pages, 1829970 bytes).
 PDF statistics:
  107 PDF objects out of 1000 (max. 8388607)
  67 compressed objects within 1 object stream
