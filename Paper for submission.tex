@@ -399,8 +399,7 @@ Email: jzola@buffalo.edu}
 % in the abstract
 \begin{abstract}
 This paper presents a parallel implementation of smoothed particle hydrodynamics (SPH) method using the message passing interface (MPI) standard to simulate a turbulent jet or plume which is ejected from a nozzle into a uniform environment(JPUE). Background grid is used to reduce neighbors searching cost and to decompose (redecompose) the domain. Space Filing Curve(SFC) based index is adopted to assign an unique identifier to each background grid. As simulation of JUPE requires adding of new particles during simulation, time-dependent SFC based indexes are assigned to particles to guarantee uniqueness of identifiers.  
-%to distinguish particles added at the same position but different simulation time step. 
-Both particle and background grid are managed by hash tables which ensure quick and flexible accessing, adding and deleting of element. %Additional link list attached to the hashtable is used to handle hash conflicts.
+Both particle and background grid are managed by hash tables which ensure quick and flexible accessing, adding and deleting of element.
 A SFC based three dimensional domain decomposition and a dynamic load balancing strategy are implemented to ensure good load balance. In addition, computational domain is adjusted during simulation to reduce computational cost. 
 Numerical tests show that our code has acceptable strong scalability and good weak scalability.
 These strategies can be further applied to many other implementations of meshfree methods, especially those implementations that require irregular
