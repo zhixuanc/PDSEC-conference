@@ -654,7 +654,7 @@ As shown in figure \ref{fig:weak_loglog}, simulation time are almost constant wi
 %\end{figure}
 %
 % We also compared the performance of 2D domain decomposition and 3D domain decomposition. As shown by figure \ref{fig:2D_vs_3D_efficiency}, 2D domain decomposition shows a little bit better speed up than 3D domain decomposition for 32 processes. This can be explained by the fact that 2D domain decomposition can get more regular subdomain and as a results, need less communication. When number of processes increase, it becomes harder for 2D decomposition to balance workload, that is why 3D domain decomposition has better speed up for processes number equals to 64 and 128.\\ 
-\subsection{Effect of workload check interval and calibrated particle weight}
+\subsection{Effect of workload check interval, hash table size and calibrated particle weight}
 \begin{table}[t!]
   \renewcommand{\arraystretch}{1.2}
   \centering
