@@ -545,7 +545,7 @@ Particles used in the test problem can be categorized into four types based on t
     \hline
     update density & 0.42 & UPD\\
     \hline
-    update position & 0.02 & UPP\\
+    update position & 0.01 & UPP\\
     \hline
     velocity filtering& 0.43 & VF\\
     \hline
@@ -563,7 +563,7 @@ Particles used in the test problem can be categorized into four types based on t
     Types & NS & UPME & UPD & UPP &VF &WBC &Total\\
     \hline
     %\hhline{|=|=|=|=|=|=|=|=|}
-    Real & Yes & Yes & Yes & Yes & Yes & No & 1.98\\
+    Real & Yes & Yes & Yes & Yes & Yes & No & 1.97\\
     \hline
     wall & No & No & No & No & No & Yes &0.75\\
     \hline
@@ -625,7 +625,7 @@ The work flow with domain adjusting is in figure \ref{fig:Work_flow_adjust}.
 \caption{The volcano plume}
 \label{fig:Plume}
 \end{figure}
-Our target here is to develop data management and parallelization strategies for more complicated implementations of SPH which demand quick and flexible data access, deletion and addition. Thus, the test problem used should have such requirements. Simulations of a volcanic eruption, will place these demands on the framework. Thus, we adopt a two phase volcanic plume model\cite{suzuki2005numerical} as our test problem. Governing equation, boundary condition and input parameters can be found in \cite{suzuki2005numerical}. Details about discretization of the governing equations will not be covered in this paper, neither. A typical simulation result of volcano plume is shown in figure \ref{fig:Plume}. Input parameters for this simulation are exactly the same as "Run P1" in reference \cite{suzuki2005numerical}.
+Our target here is to develop data management and parallelization strategies for more complicated implementations of SPH which demand quick and flexible data access, deletion and addition of particles. Thus, the test problem should have such requirements. Simulations of a volcanic eruption, will place these demands on the framework. Thus, we adopt a two phase volcanic plume model\cite{suzuki2005numerical} as our test problem. Governing equation, boundary condition and input parameters can be found in \cite{suzuki2005numerical}. Details about discretization of the governing equations will not be covered in this paper, neither. A typical simulation result of volcano plume by our code is shown in figure \ref{fig:Plume}. Input parameters for this simulation are exactly the same as "Run P1" in reference \cite{suzuki2005numerical}.
 %
 \subsection{Scalability test}
 \begin{figure}[!t]
@@ -699,13 +699,13 @@ We need to emphasize that, these optimized parameters, including weight of parti
     Cost & UPME & UPP & ADPP & ADWP & SWCH & SCN\\
     \hline
     %\hhline{|=|=|=|=|=|=|=|}
-    Total time (s) & 1088.97 & 36.11 & 13.02 & 7.14 & 3.87 & 3.20 \\
+    Total time (s) & 2954.8 & 38.55 & 21.51 & 8.88 & 0.08 & 7.72 \\
     \hline
-    Called times & 101 & 101 & 3 & 3 & 3 & 101 \\
+    Called times & 201 & 201 & 3 & 3 & 2 & 201 \\
     \hline
   \end{tabular}
 \end{table}
-For the test problem in this paper, the volcanic plume will finally reach to a region of $[-10km \,\,\, 10km] \times [-10km\,\,\,10km] \times [0km\,\,\,20km]$ after around 300 seconds of eruption. When numerical simulation goes up to 90 seconds, the plume is still within a region of $[-3km\,\,\,3km] \times [-3km\,\,\,3km] \times [0km\,\,\,6km]$. This implies that adjusting of domain can avoid computing large number of uninfluenced air particles, especially for the beginning stage of simulation. On the other hand, additional functions (see Fig. \ref{fig:Work_flow_adjust}) for domain adjusting will add extra computational cost. Table \ref{tab:Computational_cost_doamin_adj} shows the extra computational cost corresponding to these functions. In table \ref{tab:Computational_cost_doamin_adj}, SWCH is short for step that switch pressure ghost particle to real particle, ADPP is short for adding new pressure ghost particles, ADWP is short for adding wall ghost particles, SCN is short for scanning the most outside layer of the domain. Profilling data for momentum and energy update (UPME) and position update(UPP) is also included in the table for the purpose of comparison. As we can see from the table, the cost of SCN is neglectable compared with UPP fucntion, which is the cheapest function as shown in table \ref{tab:Computational_cost_steps}. Other three functions, ADPP, ADWP and SWCH, only called fewer times during the simulation, and as a consequence, the extra computational cost due to them are also neglectable. To summarize, the additional cost caused by domain adjusting functions is ignorable.
+For the test problem in this paper, the volcanic plume will finally reach to a region of $[-10km \,\,\, 10km] \times [-10km\,\,\,10km] \times [0km\,\,\,20km]$ after around 300 seconds of eruption. When numerical simulation goes up to 90 seconds, the plume is still within a region of $[-3km\,\,\,3km] \times [-3km\,\,\,3km] \times [0km\,\,\,6km]$. This implies that adjusting of domain can avoid computing large number of uninfluenced air particles, especially for the beginning stage of simulation. On the other hand, additional functions (see Fig. \ref{fig:Work_flow_adjust}) for domain adjusting will add extra computational cost. Table \ref{tab:Computational_cost_doamin_adj} shows the extra computational cost corresponding to these functions. In table \ref{tab:Computational_cost_doamin_adj}, SWCH is short for step that switch pressure ghost particle to real particle, ADPP is short for adding new pressure ghost particles, ADWP is short for adding wall ghost particles, SCN is short for scanning the most outside layer of the domain. Profilling data for momentum and energy update (UPME) and position update (UPP) is also included in the table for the purpose of comparison. As we can see from the table, the cost of SCN is even smaller than UPP fucntion, which is the cheapest function (as shown in table \ref{tab:Computational_cost_steps}) in the regular framework (see Fig \ref{fig:Work_flow}). Other three functions, ADPP, ADWP and SWCH, only called fewer times during the simulation, and as a consequence, the extra computational cost due to them are neglectable. To summarize, the additional cost caused by domain adjusting functions is ignorable.
 \begin{figure}[!t]
 \centering
 \includegraphics[scale=0.35]{adj_vs_no}
