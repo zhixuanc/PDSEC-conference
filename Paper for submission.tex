@@ -628,10 +628,20 @@ The work flow with domain adjusting is in figure \ref{fig:Work_flow_adjust}.
 Our target here is to develop data management and parallelization strategies for more complicated implementations of SPH which demand quick and flexible data access, deletion and addition of particles. Thus, the test problem should have such requirements. Simulations of a volcanic eruption, will place these demands on the framework. Thus, we adopt a two phase volcanic plume model\cite{suzuki2005numerical} as our test problem. Governing equation, boundary condition and input parameters can be found in \cite{suzuki2005numerical}. Details about discretization of the governing equations will not be covered in this paper, neither. A typical simulation result of volcano plume by our code is shown in figure \ref{fig:Plume}. Input parameters for this simulation are exactly the same as "Run P1" in reference \cite{suzuki2005numerical}.
 %
 \subsection{Scalability test}
+%\begin{figure}[!t]
+%\centering
+%\includegraphics[scale=0.33]{strong_scale}
+%\caption{Influence of total work load on strong scalability. It will exceed the time limit on CCR to do a serial simulation for case 2, so the serial simulation time is estimated by assuming that speed up of case 1 and case 2 are the same at 64 processors.}
+%\label{fig:2cases_efficiency}
+%\end{figure}
 \begin{figure}[!t]
 \centering
-\includegraphics[scale=0.33]{strong_scale}
-\caption{Influence of total work load on strong scalability. It will exceed the time limit on CCR to do a serial simulation for case 2, so the serial simulation time is estimated by assuming that speed up of case 1 and case 2 are the same at 64 processors.}
+\subfloat[a]{\includegraphics[scale=0.33]{strong_scale}}
+\label{fig:plume_photo}
+\hfil
+\subfloat[b. zoomed view of a]{\includegraphics[scale=0.33]{strong_scale_zoom}}
+\label{fig:plume_simulation}
+\caption{Influence of total work load on strong scalability. Fig. b is the zoomed view of Fig a. It is obviously shown that strong scalability is better when problem size is larger.}
 \label{fig:2cases_efficiency}
 \end{figure}
 %
